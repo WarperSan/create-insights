@@ -9,10 +9,9 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 
-// The value here should match an entry in the META-INF/neoforge.mods.toml file
-@Mod(CreateInsights.MODID)
+@Mod(CreateInsights.MOD_ID)
 public class CreateInsights {
-    public static final String MODID = "create_insights";
+    public static final String MOD_ID = "create_insights";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
