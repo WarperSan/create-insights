@@ -15,8 +15,7 @@ import org.joml.Vector2i;
 import java.util.List;
 
 /**
- * Draws the goggle overlay's icon and tooltip box: fade-in, positioning, theme colors, and the
- * ModernUI cursor-jiggle workaround.
+ * Class responsible to draw the goggle overlay box
  */
 final class GoggleOverlayBoxRenderer
 {
@@ -42,7 +41,9 @@ final class GoggleOverlayBoxRenderer
 		var position = computePosition(font, tooltip, width, height);
 		var colors = resolveColors();
 
-		GuiGameElement.of(icon).at(position.x() + 10, position.y() - 16, 450).render(graphics);
+		GuiGameElement.of(icon)
+				.at(position.x() + 10, position.y() - 16, 450)
+				.render(graphics);
 
 		RemovedGuiUtils.drawHoveringText(
 				graphics,
