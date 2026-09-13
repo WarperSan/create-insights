@@ -1,12 +1,13 @@
 package dev.warpersan.create_insights.recipes;
 
 import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity;
+import com.simibubi.create.foundation.item.TooltipHelper;
 import com.simibubi.create.foundation.utility.CreateLang;
-import net.minecraft.network.chat.Component;
+import dev.warpersan.create_insights.recipes.accessors.MillstoneBlockEntityAccessor;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Class responsible to create a recipe tooltip for blocks
@@ -16,17 +17,12 @@ public class RecipeHandler {
     /**
      * Gets the recipe tooltip of the given block
      */
-    public static List<Component> getRecipeTooltip(BlockEntity blockEntity) {
+    @Nullable
+    public static MutableComponent getRecipeTooltip(BlockEntity blockEntity) {
 
-        if (blockEntity instanceof MillstoneBlockEntity millstone) {
-            var list = new ArrayList<Component>();
+        if (blockEntity instanceof MillstoneBlockEntity millstone)
+            return getMillstoneTooltip(millstone);
 
-            CreateLang.builder().text(String.valueOf(millstone.timer))
-                    .addTo(list);
-
-            return list;
-        }
-
-        return new ArrayList<>();
+        return null;
     }
 }
