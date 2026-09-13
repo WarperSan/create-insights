@@ -2,6 +2,7 @@ package dev.warpersan.create_insights.recipes;
 
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelBlockEntity;
 import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity;
+import com.simibubi.create.content.kinetics.mixer.MechanicalMixerBlockEntity;
 import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.structures.StructureFinder;
 import dev.warpersan.create_insights.tooltips.ProgressBarTooltip;
@@ -76,7 +77,7 @@ public class RecipeHandler {
             CreateInsights.LOGGER.debug("Failed to get the recipe of the crushing wheel.");
             return null;
         }
-        
+
         var total = recipe.getProcessingDuration() - 20;
         var current = Math.max(total - controller.inventory.remainingTime + 20, 0);
 

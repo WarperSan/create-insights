@@ -5,6 +5,7 @@ import com.simibubi.create.content.kinetics.crusher.CrushingRecipe;
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlockEntity;
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
 import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity;
+import com.simibubi.create.content.kinetics.mixer.MechanicalMixerBlockEntity;
 import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -60,10 +61,9 @@ public class RecipeFinder {
 
         return null;
     }
-    
+
     @Nullable
-    public static StandardProcessingRecipe<RecipeWrapper> getCrushingRecipe(CrushingWheelControllerBlockEntity crushingWheel)
-    {
+    public static StandardProcessingRecipe<RecipeWrapper> getCrushingRecipe(CrushingWheelControllerBlockEntity crushingWheel) {
         var recipe = crushingWheel.findRecipe();
 
         return recipe.map(RecipeHolder::value).orElse(null);
