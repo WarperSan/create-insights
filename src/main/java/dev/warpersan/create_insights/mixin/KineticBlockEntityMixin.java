@@ -1,8 +1,7 @@
 package dev.warpersan.create_insights.mixin;
 
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
-import com.simibubi.create.foundation.utility.CreateLang;
-import dev.warpersan.create_insights.foundation.item.RecipeStats;
+import dev.warpersan.create_insights.recipes.RecipeHandler;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,11 +20,15 @@ public class KineticBlockEntityMixin {
         if (!cir.getReturnValue())
             return;
 
-        CreateLang.number(69420.0).forGoggles(tooltip);
-
-        var stats = RecipeStats.getStats();
+        var block = (KineticBlockEntity) (Object) this;
+        
+        var recipeTooltip = RecipeHandler.getRecipeTooltip(block);
+        
+        // Skip if empty
+        if (recipeTooltip.isEmpty())
+            return;
 
         tooltip.add(CommonComponents.EMPTY);
-        tooltip.addAll(stats);
+        tooltip.addAll(recipeTooltip);
     }
 }
