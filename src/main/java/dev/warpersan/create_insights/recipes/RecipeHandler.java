@@ -1,9 +1,8 @@
 package dev.warpersan.create_insights.recipes;
 
 import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity;
-import com.simibubi.create.foundation.item.TooltipHelper;
-import com.simibubi.create.foundation.utility.CreateLang;
-import dev.warpersan.create_insights.recipes.accessors.MillstoneBlockEntityAccessor;
+import dev.warpersan.create_insights.CreateInsights;
+import dev.warpersan.create_insights.tooltips.ProgressBarTooltip;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
@@ -52,14 +51,6 @@ public class RecipeHandler {
 
         var percent = Math.clamp((double) current / total, 0.0, 1.0);
 
-        var builder = CreateLang.builder()
-                .text(String.valueOf(millstone.timer));
-
-        var barLength = 5;
-        var bar = TooltipHelper.makeProgressBar(barLength, (int) (barLength * percent));
-
-        builder.add(CreateLang.text(bar));
-
-        return builder.component();
+        return ProgressBarTooltip.getColoredBar(8, percent);
     }
 }
