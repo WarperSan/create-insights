@@ -25,4 +25,36 @@ public class RecipeHandler {
 
         return null;
     }
+
+    @Nullable
+    private static MutableComponent getMillstoneTooltip(MillstoneBlockEntity millstone) {
+        var recipe = MillstoneBlockEntityAccessor.getLastRecipe(millstone);
+
+        if (recipe == null)
+            return null;
+
+        var total = recipe.getProcessingDuration();
+        var current = Math.max(total - millstone.timer, 0);
+
+        if (total <= 0) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Instance of '%s' has a recipe with a processing duration less than 1.",
+                            MillstoneBlockEntity.class
+                    )
+            );
+        }
+
+        var percent = Math.clamp((double) current / total, 0.0, 1.0);
+
+        var builder = CreateLang.builder()
+                .text(String.valueOf(millstone.timer));
+
+        var barLength = 5;
+        var bar = TooltipHelper.makeProgressBar(barLength, (int) (barLength * percent));
+
+        builder.add(CreateLang.text(bar));
+
+        return builder.component();
+    }
 }
