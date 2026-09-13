@@ -19,19 +19,24 @@ public class RecipeHandler {
      */
     @Nullable
     public static MutableComponent getRecipeTooltip(BlockEntity blockEntity) {
-
-        if (blockEntity instanceof MillstoneBlockEntity millstone)
-            return getMillstoneTooltip(millstone);
+        try {
+            if (blockEntity instanceof MillstoneBlockEntity millstone)
+                return getMillstoneTooltip(millstone);
+        } catch (Exception e) {
+            CreateInsights.LOGGER.error("Error while getting the recipe: {}", e.getMessage());
+        }
 
         return null;
     }
 
     @Nullable
     private static MutableComponent getMillstoneTooltip(MillstoneBlockEntity millstone) {
-        var recipe = MillstoneBlockEntityAccessor.getLastRecipe(millstone);
+        var recipe = RecipeFinder.getMillingRecipe(millstone);
 
-        if (recipe == null)
+        if (recipe == null) {
+            CreateInsights.LOGGER.debug("Failed to get the recipe of the millstone.");
             return null;
+        }
 
         var total = recipe.getProcessingDuration();
         var current = Math.max(total - millstone.timer, 0);
