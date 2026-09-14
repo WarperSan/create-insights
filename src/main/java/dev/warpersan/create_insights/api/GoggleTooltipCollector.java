@@ -17,11 +17,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
 
 public final class GoggleTooltipCollector
 {
-	private static List<Function<TooltipContext, Boolean>> Callbacks = new ArrayList<>();
+	private static final List<ITooltipProvider> Providers = new ArrayList<>();
 
 	/**
 	 * Class holding information about the creation of tooltips
@@ -91,9 +90,12 @@ public final class GoggleTooltipCollector
 		}
 	}
 
-	public static void addCallback(Function<TooltipContext, Boolean> callback)
+	/**
+	 * Adds the given provider
+	 */
+	public static void addProvider(ITooltipProvider provider)
 	{
-		Callbacks.add(callback);
+		Providers.add(provider);
 	}
 
 	/**
@@ -103,9 +105,9 @@ public final class GoggleTooltipCollector
 	{
 		var context = new TooltipContext(level, player, pos);
 
-		for (var callback : Callbacks)
+		for (var provider : Providers)
 		{
-			var shouldContinue = callback.apply(context);
+			var shouldContinue = provider.provide(context);
 
 			if (!shouldContinue)
 				break;
