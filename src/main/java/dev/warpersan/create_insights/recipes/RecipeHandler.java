@@ -1,7 +1,6 @@
 package dev.warpersan.create_insights.recipes;
 
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelBlockEntity;
-import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity;
 import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.structures.StructureFinder;
 import dev.warpersan.create_insights.tooltips.ProgressBarTooltip;
@@ -21,9 +20,6 @@ public class RecipeHandler {
     @Nullable
     public static MutableComponent getRecipeTooltip(BlockEntity blockEntity) {
         try {
-            if (blockEntity instanceof MillstoneBlockEntity millstone)
-                return getMillstoneTooltip(millstone);
-
             if (blockEntity instanceof CrushingWheelBlockEntity crushingWheel)
                 return getCrushingWheelTooltip(crushingWheel);
 
@@ -32,32 +28,6 @@ public class RecipeHandler {
         }
 
         return null;
-    }
-
-    @Nullable
-    private static MutableComponent getMillstoneTooltip(MillstoneBlockEntity millstone) {
-        var recipe = RecipeFinder.getMillingRecipe(millstone);
-
-        if (recipe == null) {
-            CreateInsights.LOGGER.debug("Failed to get the recipe of the millstone.");
-            return null;
-        }
-
-        var total = recipe.getProcessingDuration();
-        var current = Math.max(total - millstone.timer, 0);
-
-        if (total <= 0) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Instance of '%s' has a recipe with a processing duration less than 1.",
-                            MillstoneBlockEntity.class
-                    )
-            );
-        }
-
-        var percent = Math.clamp((double) current / total, 0.0, 1.0);
-
-        return ProgressBarTooltip.getColoredBar(8, percent);
     }
 
     @Nullable
