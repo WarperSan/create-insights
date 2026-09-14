@@ -1,6 +1,0 @@
-{
-	"package": "dev.warpersan.create_insights.mixin",
-	"mixins": [
-		"KineticBlockEntityMixin"
-	]
-}
