@@ -1,13 +1,8 @@
 {
-  "itemGroup.create_insights": "Example Mod Tab",
-  "block.create_insights.example_block": "Example Block",
-  "item.create_insights.example_item": "Example Item",
-
   "create_insights.configuration.title": "Create: Insights Configs",
   "create_insights.configuration.section.create_insights.common.toml": "Create: Insights Configs",
   "create_insights.configuration.section.create_insights.common.toml.title": "Create: Insights Configs",
-  "create_insights.configuration.items": "Item List",
-  "create_insights.configuration.logDirtBlock": "Log Dirt Block",
-  "create_insights.configuration.magicNumberIntroduction": "Magic Number Text",
-  "create_insights.configuration.magicNumber": "Magic Number"
+	
+	"create_insights.gui.goggles.insights_stats": "Insights:",
+	"create_insights.tooltip.progress": "Progress:"
 }
