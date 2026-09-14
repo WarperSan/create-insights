@@ -12,6 +12,9 @@ import java.util.List;
 
 import static net.minecraft.ChatFormatting.*;
 
+/**
+ * Provider responsible to display the heat remaining of the given blaze burner
+ */
 public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 {
 	@Override
@@ -33,6 +36,7 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 
 		var time = Integer.parseInt(remainingBurnTime);
 		var fuelType = blazeBurner.getActiveFuel();
+		var isCreative = blazeBurner.isCreative();
 
 		var headerBuilder = context.builder()
 				.translate("tooltip.heating")
@@ -42,9 +46,9 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 
 		var builder = context.builder();
 
-		builder.add(getFuelTypeDisplay(fuelType));
+		builder.add(getFuelTypeDisplay(fuelType, isCreative));
 		builder.text(" ");
-		builder.add(getTimeDisplay(time));
+		builder.add(getTimeDisplay(time, isCreative));
 
 		builder.addTo(tooltip);
 		return true;
@@ -53,7 +57,7 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 	/**
 	 * Creates a component for the given fuel type
 	 */
-	private static Component getFuelTypeDisplay(BlazeBurnerBlockEntity.FuelType fuel)
+	private static Component getFuelTypeDisplay(BlazeBurnerBlockEntity.FuelType fuel, boolean isCreative)
 	{
 		int fireCount;
 		var fireIcon = "\uD83D\uDD25";
@@ -65,8 +69,16 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 		{
 			case NONE ->
 			{
-				fireCount = 1;
-				textColor = DARK_GRAY;
+				if (isCreative)
+				{
+					fireCount = 3;
+					textColor = DARK_PURPLE;
+				}
+				else
+				{
+					fireCount = 1;
+					textColor = DARK_GRAY;
+				}
 			}
 			case NORMAL ->
 			{
@@ -93,8 +105,14 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 	/**
 	 * Creates a component for the given time in ticks
 	 */
-	private static Component getTimeDisplay(int ticks)
+	private static Component getTimeDisplay(int ticks, boolean isCreative)
 	{
+		if (isCreative)
+		{
+			//noinspection UnnecessaryUnicodeEscape
+			return CreateLang.text("\u221E").component();
+		}
+		
 		var milliseconds = (int) Math.floor(ticks / (double) SharedConstants.TICKS_PER_SECOND * 1000);
 		long totalSeconds = milliseconds / 1000;
 
