@@ -66,14 +66,7 @@ public final class GoggleTooltipCollector
 				return null;
 
 			if (!clazz.isInstance(blockEntity))
-			{
-				CreateInsights.LOGGER.error(
-						"Failed to cast '{}' to '{}'.",
-						blockEntity.getClass().getName(),
-						clazz.getName()
-				);
 				return null;
-			}
 
 			return clazz.cast(blockEntity);
 		}
