@@ -93,7 +93,7 @@ public final class GoggleTooltipCollector
 		 */
 		public LangBuilder builder()
 		{
-			return Lang.builder(CreateInsights.MOD_ID);
+			return new LangBuilder(CreateInsights.MOD_ID);
 		}
 
 		private List<Component> compile()
