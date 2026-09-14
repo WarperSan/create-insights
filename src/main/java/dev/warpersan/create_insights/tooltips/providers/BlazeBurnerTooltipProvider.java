@@ -1,5 +1,6 @@
 package dev.warpersan.create_insights.tooltips.providers;
 
+import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlockEntity;
 import com.simibubi.create.foundation.utility.CreateLang;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
@@ -9,8 +10,6 @@ import net.minecraft.SharedConstants;
 import net.minecraft.network.chat.Component;
 
 import java.util.List;
-
-import static net.minecraft.ChatFormatting.*;
 
 /**
  * Provider responsible to display the heat remaining of the given blaze burner
@@ -37,16 +36,22 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 		var time = Integer.parseInt(remainingBurnTime);
 		var fuelType = blazeBurner.getActiveFuel();
 		var isCreative = blazeBurner.isCreative();
+		var heatLevel = blazeBurner.getHeatLevelFromBlock();
 
 		var headerBuilder = context.builder()
 				.translate("tooltip.heating")
-				.style(GRAY);
+				.style(ChatFormatting.GRAY);
 
 		headerBuilder.addTo(tooltip);
 
 		var builder = context.builder();
+		var fuelTypeDisplay = getFuelTypeDisplay(
+				fuelType,
+				heatLevel,
+				isCreative
+		);
 
-		builder.add(getFuelTypeDisplay(fuelType, isCreative));
+		builder.add(fuelTypeDisplay);
 		builder.text(" ");
 		builder.add(getTimeDisplay(time, isCreative));
 
@@ -57,45 +62,53 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 	/**
 	 * Creates a component for the given fuel type
 	 */
-	private static Component getFuelTypeDisplay(BlazeBurnerBlockEntity.FuelType fuel, boolean isCreative)
+	private static Component getFuelTypeDisplay(
+			BlazeBurnerBlockEntity.FuelType fuelType,
+			BlazeBurnerBlock.HeatLevel heatLevel,
+			boolean isCreative
+	)
 	{
-		int fireCount;
-		var fireIcon = "\uD83D\uDD25";
-		ChatFormatting textColor;
+		final var fireIcon = "\uD83D\uDD25";
+		final var fireCountForSmouldering = 1;
+		final var fireCountForKindled = 2;
+		final var fireCountForSeething = 3;
 
-		var output = "";
+		var fireCount = 0;
+		var textColor = ChatFormatting.RESET;
 
-		switch (fuel)
+		switch (fuelType)
 		{
 			case NONE ->
 			{
 				if (isCreative)
 				{
-					fireCount = 3;
-					textColor = DARK_PURPLE;
-				}
-				else
+					if (heatLevel == BlazeBurnerBlock.HeatLevel.SEETHING)
+						fireCount = fireCountForSeething;
+					else if (heatLevel == BlazeBurnerBlock.HeatLevel.KINDLED)
+						fireCount = fireCountForKindled;
+					else
+						fireCount = fireCountForSmouldering;
+
+					textColor = ChatFormatting.DARK_PURPLE;
+				} else
 				{
-					fireCount = 1;
-					textColor = DARK_GRAY;
+					fireCount = fireCountForSmouldering;
+					textColor = ChatFormatting.DARK_GRAY;
 				}
 			}
 			case NORMAL ->
 			{
-				fireCount = 2;
-				textColor = DARK_RED;
+				fireCount = fireCountForKindled;
+				textColor = ChatFormatting.DARK_RED;
 			}
 			case SPECIAL ->
 			{
-				fireCount = 3;
-				textColor = DARK_AQUA;
-			}
-			default ->
-			{
-				fireCount = 0;
-				textColor = RESET;
+				fireCount = fireCountForSeething;
+				textColor = ChatFormatting.DARK_AQUA;
 			}
 		}
+
+		var output = "";
 
 		output += fireIcon.repeat(fireCount);
 
@@ -112,7 +125,7 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 			//noinspection UnnecessaryUnicodeEscape
 			return CreateLang.text("\u221E").component();
 		}
-		
+
 		var milliseconds = (int) Math.floor(ticks / (double) SharedConstants.TICKS_PER_SECOND * 1000);
 		long totalSeconds = milliseconds / 1000;
 
