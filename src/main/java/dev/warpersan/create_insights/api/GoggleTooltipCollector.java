@@ -1,5 +1,6 @@
 package dev.warpersan.create_insights.api;
 
+import com.simibubi.create.content.equipment.goggles.GogglesItem;
 import dev.warpersan.create_insights.CreateInsights;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -41,6 +42,14 @@ public final class GoggleTooltipCollector
 		public Player player()
 		{
 			return player;
+		}
+
+		/**
+		 * Defines if the player is wearing goggles
+		 */
+		public boolean isWearingGoggles()
+		{
+			return GogglesItem.isWearingGoggles(player);
 		}
 
 		/**
