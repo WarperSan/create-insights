@@ -62,9 +62,24 @@ public final class GoggleTooltipCollector
 		 * Gets the targeted block entity
 		 */
 		@Nullable
-		public BlockEntity getBlockEntity()
+		public <T> T getBlockEntity(Class<T> clazz)
 		{
-			return level.getBlockEntity(pos);
+			var blockEntity = level.getBlockEntity(pos);
+
+			if (blockEntity == null)
+				return null;
+
+			if (!clazz.isInstance(blockEntity))
+			{
+				CreateInsights.LOGGER.error(
+						"Failed to cast '{}' to '{}'.",
+						blockEntity.getClass().getName(),
+						clazz.getName()
+				);
+				return null;
+			}
+
+			return clazz.cast(blockEntity);
 		}
 
 		/**
