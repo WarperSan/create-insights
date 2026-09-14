@@ -2,7 +2,6 @@ package dev.warpersan.create_insights.recipes;
 
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelBlockEntity;
 import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity;
-import com.simibubi.create.content.kinetics.mixer.MechanicalMixerBlockEntity;
 import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.structures.StructureFinder;
 import dev.warpersan.create_insights.tooltips.ProgressBarTooltip;
