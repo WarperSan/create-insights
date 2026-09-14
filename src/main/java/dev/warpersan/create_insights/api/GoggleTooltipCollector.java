@@ -2,6 +2,8 @@ package dev.warpersan.create_insights.api;
 
 import com.simibubi.create.content.equipment.goggles.GogglesItem;
 import dev.warpersan.create_insights.CreateInsights;
+import net.createmod.catnip.lang.Lang;
+import net.createmod.catnip.lang.LangBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
@@ -91,6 +93,14 @@ public final class GoggleTooltipCollector
 		{
 			for (var component : components)
 				add(component);
+		}
+
+		/**
+		 * Gets a builder
+		 */
+		public LangBuilder builder()
+		{
+			return Lang.builder(CreateInsights.MOD_ID);
 		}
 
 		private List<Component> compile()
