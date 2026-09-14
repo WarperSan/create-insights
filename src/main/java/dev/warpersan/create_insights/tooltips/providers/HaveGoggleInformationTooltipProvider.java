@@ -15,14 +15,14 @@ public class HaveGoggleInformationTooltipProvider implements ITooltipProvider
 		if (!context.isWearingGoggles())
 			return true;
 
-		var blockEntity = context.getBlockEntity();
+		var blockEntity = context.getBlockEntity(IHaveGoggleInformation.class);
 
-		if (!(blockEntity instanceof IHaveGoggleInformation gte))
+		if (blockEntity == null)
 			return true;
 
 		var tooltip = new ArrayList<Component>();
 
-		gte.addToGoggleTooltip(tooltip, context.player().isCrouching());
+		blockEntity.addToGoggleTooltip(tooltip, context.player().isCrouching());
 
 		context.addAll(tooltip);
 
