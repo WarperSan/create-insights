@@ -1,4 +1,4 @@
-package dev.warpersan.create_insights.tooltips;
+package dev.warpersan.create_insights.tooltips.providers;
 
 import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
