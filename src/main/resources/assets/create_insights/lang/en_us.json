@@ -6,6 +6,9 @@
 	"create_insights.gui.goggles.insights_stats": "Insights:",
 	"create_insights.tooltip.progress": "Progress:",
 
+	"create_insights.tooltip.pushing": "Push:",
+	"create_insights.tooltip.pushing.distance": "Up to",
+
 	"create_insights.tooltip.heating": "Heating:",
 	"create_insights.tooltip.heating.none": "None",
 	"create_insights.tooltip.heating.low": "🔥",

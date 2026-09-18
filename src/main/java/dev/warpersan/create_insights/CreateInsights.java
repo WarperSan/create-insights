@@ -37,6 +37,7 @@ public class CreateInsights
 		GoggleTooltipCollector.addProvider(new PulseTimerTooltipProvider());
 		GoggleTooltipCollector.addProvider(new PulseExtenderTooltipProvider());
 		GoggleTooltipCollector.addProvider(new MillstoneTooltipProvider());
+		GoggleTooltipCollector.addProvider(new EncasedFanTooltipProvider());
 	}
 
 	@SubscribeEvent
