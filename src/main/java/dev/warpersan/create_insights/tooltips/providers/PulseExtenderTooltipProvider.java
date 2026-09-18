@@ -64,6 +64,7 @@ public class PulseExtenderTooltipProvider extends BrassDiodeTooltipProvider
 				.addScale(TimeBuilder.TimeScale.HOURS)
 				.addScale(TimeBuilder.TimeScale.MINUTES)
 				.addScale(TimeBuilder.TimeScale.SECONDS)
+				.addScale(TimeBuilder.TimeScale.TICKS)
 				.forTicks(currentTicks);
 
 		var time = timeBuilder.getTime();

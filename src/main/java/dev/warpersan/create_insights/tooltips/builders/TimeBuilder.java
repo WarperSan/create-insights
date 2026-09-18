@@ -15,6 +15,7 @@ public class TimeBuilder
 	 */
 	public enum TimeScale
 	{
+		TICKS,
 		MILLISECONDS,
 		SECONDS,
 		MINUTES,
@@ -94,9 +95,14 @@ public class TimeBuilder
 				parts.add(milliseconds + "ms");
 		}
 
-		// Fallback on 0 seconds
-		if (parts.isEmpty() && totalTicks < SharedConstants.TICKS_PER_SECOND && !scale.contains(TimeScale.MILLISECONDS))
-			parts.add("0s");
+		// Fallback if too small
+		if (!scale.contains(TimeScale.MILLISECONDS) && totalTicks < SharedConstants.TICKS_PER_SECOND)
+		{
+			if (scale.contains(TimeScale.TICKS))
+				parts.add(totalTicks + "t");
+			else
+				parts.add("0s");
+		}
 
 		return String.join(" ", parts);
 	}
