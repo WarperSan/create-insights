@@ -94,6 +94,10 @@ public class TimeBuilder
 				parts.add(milliseconds + "ms");
 		}
 
+		// Fallback on 0 seconds
+		if (parts.isEmpty() && totalTicks < SharedConstants.TICKS_PER_SECOND && !scale.contains(TimeScale.MILLISECONDS))
+			parts.add("0s");
+
 		return String.join(" ", parts);
 	}
 

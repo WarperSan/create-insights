@@ -143,10 +143,7 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 		{
 			var noneBuilder = new LangBuilder(CreateInsights.MOD_ID);
 
-			if (fuelType == BlazeBurnerBlockEntity.FuelType.NONE)
-				noneBuilder.translate("tooltip.heating.none");
-			else
-				noneBuilder.text("0s");
+			noneBuilder.translate("tooltip.heating.none");
 
 			return noneBuilder.component();
 		}
