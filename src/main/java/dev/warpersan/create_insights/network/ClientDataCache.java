@@ -99,6 +99,16 @@ public class ClientDataCache
 	}
 
 	/**
+	 * Sets the given entry to the given field at the given position if no other entry is present
+	 */
+	private static void setIfAbsent(BlockPos pos, String fieldName, CacheEntry entry)
+	{
+		var cacheKey = getKey(pos, fieldName);
+
+		CLIENT_CACHE.putIfAbsent(cacheKey, entry);
+	}
+
+	/**
 	 * Gets the value of the given field, or requests it for future calls
 	 */
 	@Nullable
@@ -126,7 +136,7 @@ public class ClientDataCache
 
 		var entry = new CacheEntry();
 
-		set(pos, fieldName, entry);
+		setIfAbsent(pos, fieldName, entry);
 	}
 
 	/**
