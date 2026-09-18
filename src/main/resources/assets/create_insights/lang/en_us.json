@@ -12,5 +12,7 @@
 	"create_insights.tooltip.heating.medium": "🔥🔥",
 	"create_insights.tooltip.heating.high": "🔥🔥🔥",
 
-	"create_insights.tooltip.timing": "Timing:"
+	"create_insights.tooltip.timing": "Timing:",
+	"create_insights.tooltip.timing.wait": "Awaiting pulse",
+	"create_insights.tooltip.timing.pulse": "Pulse in"
 }

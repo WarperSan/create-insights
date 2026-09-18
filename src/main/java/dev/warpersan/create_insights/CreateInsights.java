@@ -33,6 +33,7 @@ public class CreateInsights
 
 		GoggleTooltipCollector.addProvider(new HaveGoggleInformationTooltipProvider());
 		GoggleTooltipCollector.addProvider(new BlazeBurnerTooltipProvider());
+		GoggleTooltipCollector.addProvider(new PulseRepeaterTooltipProvider());
 		GoggleTooltipCollector.addProvider(new MillstoneTooltipProvider());
 	}
 
