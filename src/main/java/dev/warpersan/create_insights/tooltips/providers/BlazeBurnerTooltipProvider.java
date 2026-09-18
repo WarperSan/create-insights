@@ -5,8 +5,8 @@ import com.simibubi.create.content.processing.burner.BlazeBurnerBlockEntity;
 import com.simibubi.create.foundation.utility.CreateLang;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.network.ClientDataCache;
+import dev.warpersan.create_insights.tooltips.builders.TimeBuilder;
 import net.minecraft.ChatFormatting;
-import net.minecraft.SharedConstants;
 import net.minecraft.network.chat.Component;
 
 import java.util.List;
@@ -126,24 +126,12 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 			return CreateLang.text("\u221E").component();
 		}
 
-		var milliseconds = (int) Math.floor(ticks / (double) SharedConstants.TICKS_PER_SECOND * 1000);
-		long totalSeconds = milliseconds / 1000;
-
-		var hours = (totalSeconds % 86400) / 3600;
-		var minutes = (totalSeconds % 3600) / 60;
-		var seconds = totalSeconds % 60;
-
-		var sb = new StringBuilder();
-
-		if (hours > 0)
-			sb.append(hours).append("h ");
-
-		if (minutes > 0)
-			sb.append(minutes).append("m ");
-
-		if (seconds > 0 || sb.isEmpty())
-			sb.append(seconds).append("s");
-
-		return CreateLang.text(sb.toString().trim()).component();
+		var timeBuilder = new TimeBuilder()
+				.addScale(TimeBuilder.TimeScale.HOURS)
+				.addScale(TimeBuilder.TimeScale.MINUTES)
+				.addScale(TimeBuilder.TimeScale.SECONDS)
+				.forTicks(ticks);
+		
+		return timeBuilder.component();
 	}
 }
