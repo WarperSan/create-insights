@@ -8,10 +8,13 @@ import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Class responsible to request server-only data about blocks
+ */
 public class ClientDataCache
 {
 	private static final Map<String, CacheEntry> CLIENT_CACHE = new ConcurrentHashMap<>();
-	private static final long CACHE_EXPIRY_MS = 200; // 4 ticks buffer
+	private static final long CACHE_EXPIRY_MS = 200;
 
 	/**
 	 * Class holding information about a cached value
