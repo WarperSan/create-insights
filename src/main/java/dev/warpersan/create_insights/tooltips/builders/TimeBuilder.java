@@ -101,17 +101,21 @@ public class TimeBuilder extends LangBuilder
 				parts.add(milliseconds + "ms");
 		}
 
-		// If nothing, display no time
-		if (parts.isEmpty())
-			return "None";
-		
 		return String.join(" ", parts);
+	}
+
+	/**
+	 * Gets the display time of the builder
+	 */
+	public String getTime()
+	{
+		return getTime(this.tickAmount, this.scale);
 	}
 
 	@Override
 	public @NotNull MutableComponent component()
 	{
-		var time = getTime(this.tickAmount, this.scale);
+		var time = this.getTime();
 
 		return Component.literal(time);
 	}

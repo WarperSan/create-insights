@@ -1,9 +1,13 @@
 {
-  "create_insights.configuration.title": "Create: Insights Configs",
-  "create_insights.configuration.section.create_insights.common.toml": "Create: Insights Configs",
-  "create_insights.configuration.section.create_insights.common.toml.title": "Create: Insights Configs",
-	
+	"create_insights.configuration.title": "Create: Insights Configs",
+	"create_insights.configuration.section.create_insights.common.toml": "Create: Insights Configs",
+	"create_insights.configuration.section.create_insights.common.toml.title": "Create: Insights Configs",
+
 	"create_insights.gui.goggles.insights_stats": "Insights:",
 	"create_insights.tooltip.progress": "Progress:",
-	"create_insights.tooltip.heating": "Heating:"
+
+	"create_insights.tooltip.heating": "Heating:",
+	"create_insights.tooltip.heating.none": "None",
+
+	"create_insights.tooltip.timing": "Timing:"
 }

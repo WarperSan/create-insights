@@ -3,9 +3,11 @@ package dev.warpersan.create_insights.tooltips.providers;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlockEntity;
 import com.simibubi.create.foundation.utility.CreateLang;
+import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.network.ClientDataCache;
 import dev.warpersan.create_insights.tooltips.builders.TimeBuilder;
+import net.createmod.catnip.lang.LangBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
@@ -131,7 +133,17 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 				.addScale(TimeBuilder.TimeScale.MINUTES)
 				.addScale(TimeBuilder.TimeScale.SECONDS)
 				.forTicks(ticks);
-		
-		return timeBuilder.component();
+
+		var time = timeBuilder.getTime();
+
+		if (time.isBlank())
+		{
+			var noneBuilder = new LangBuilder(CreateInsights.MOD_ID)
+					.translate("tooltip.heating.none");
+
+			return noneBuilder.component();
+		}
+
+		return Component.literal(time);
 	}
 }
