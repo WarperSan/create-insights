@@ -9,8 +9,13 @@ issueTrackerURL="https://github.com/WarperSan/create-insights/issues/"
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]]
 modId="${mod_id}"
+authors="WarperSan"
 version="${mod_version}"
 displayName="${mod_name}"
+description='''
+Create addon expanding on the Goggles functionalities.
+'''
+logoFile="logo.png"
 
 # A URL to query for updates for this mod. See the JSON update specification https://docs.neoforged.net/docs/misc/updatechecker/
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
@@ -18,16 +23,8 @@ displayName="${mod_name}"
 # A URL for the "homepage" for this mod, displayed in the mod UI
 displayURL="https://github.com/WarperSan/create-insights/"
 
-# A file name (in the root of the mod JAR) containing a logo for display
-#logoFile="examplemod.png" #optional
-
 # A text field displayed in the mod UI
 #credits="" #optional
-
-authors="WarperSan"
-description='''
-Create addon expanding on the Goggles functionalities.
-'''
 
 [[mixins]]
 config="${mod_id}.mixins.json"
