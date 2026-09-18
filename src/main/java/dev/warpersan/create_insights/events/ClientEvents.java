@@ -21,7 +21,7 @@ public class ClientEvents
 		registrar.playToClient(
 				ResponseDataPayload.TYPE,
 				ResponseDataPayload.CODEC,
-				ClientDataCache::handleResponse
+				(payload, context) -> ClientDataCache.handleResponse(payload)
 		);
 	}
 }

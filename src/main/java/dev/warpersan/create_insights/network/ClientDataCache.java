@@ -142,7 +142,7 @@ public class ClientDataCache
 	/**
 	 * Handles the response of the update
 	 */
-	public static void handleResponse(ResponseDataPayload payload, IPayloadContext context)
+	public static void handleResponse(ResponseDataPayload payload)
 	{
 		var pos = payload.pos();
 		var fieldName = payload.fieldName();
