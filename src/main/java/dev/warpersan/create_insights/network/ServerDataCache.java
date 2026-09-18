@@ -11,6 +11,9 @@ import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Class responsible to collect and distribute server-only data about blocks
+ */
 public class ServerDataCache
 {
 	private static final Map<String, Field> FIELD_CACHE = new ConcurrentHashMap<>();
