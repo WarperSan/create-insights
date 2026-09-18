@@ -1,11 +1,6 @@
 package dev.warpersan.create_insights.tooltips.builders;
 
-import dev.warpersan.create_insights.CreateInsights;
-import net.createmod.catnip.lang.LangBuilder;
 import net.minecraft.SharedConstants;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -13,7 +8,7 @@ import java.util.EnumSet;
 /**
  * Builder used to convert ticks into a readable format
  */
-public class TimeBuilder extends LangBuilder
+public class TimeBuilder
 {
 	/**
 	 * Enum used to define the scale of the time
@@ -31,8 +26,6 @@ public class TimeBuilder extends LangBuilder
 
 	public TimeBuilder()
 	{
-		super(CreateInsights.MOD_ID);
-
 		this.scale = EnumSet.noneOf(TimeScale.class);
 	}
 
@@ -110,13 +103,5 @@ public class TimeBuilder extends LangBuilder
 	public String getTime()
 	{
 		return getTime(this.tickAmount, this.scale);
-	}
-
-	@Override
-	public @NotNull MutableComponent component()
-	{
-		var time = this.getTime();
-
-		return Component.literal(time);
 	}
 }
