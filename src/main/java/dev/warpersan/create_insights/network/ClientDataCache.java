@@ -16,12 +16,36 @@ public class ClientDataCache
 	/**
 	 * Class holding information about a cached value
 	 */
-	private record CacheEntry(String value, long timestamp)
+	@SuppressWarnings("ClassCanBeRecord")
+	private static class CacheEntry
 	{
+		private final String value;
+		private final long timestamp;
+		private final boolean isTemporary;
+
+		/**
+		 * Creates an empty temporary entry
+		 */
+		public CacheEntry()
+		{
+			this.value = null;
+			this.timestamp = 0;
+			this.isTemporary = true;
+		}
+
+		/**
+		 * Creates an entry of the given value
+		 */
+		public CacheEntry(String value)
+		{
+			this.value = value;
+			this.timestamp = System.currentTimeMillis();
+			this.isTemporary = false;
+		}
+
 		/**
 		 * Gets the cached value of this entry
 		 */
-		@Override
 		public String value()
 		{
 			return value;
@@ -32,6 +56,9 @@ public class ClientDataCache
 		 */
 		public boolean isUpToDate()
 		{
+			if (isTemporary)
+				return true;
+
 			var now = System.currentTimeMillis();
 			var timeSinceLastUpdate = now - timestamp;
 
@@ -59,11 +86,10 @@ public class ClientDataCache
 	}
 
 	/**
-	 * Sets the entry of the given field at the given position to the given value
+	 * Sets the given entry to the given field at the given position
 	 */
-	private static void set(BlockPos pos, String fieldName, String value)
+	private static void set(BlockPos pos, String fieldName, CacheEntry entry)
 	{
-		var entry = new CacheEntry(value, System.currentTimeMillis());
 		var cacheKey = getKey(pos, fieldName);
 
 		CLIENT_CACHE.put(cacheKey, entry);
@@ -94,6 +120,10 @@ public class ClientDataCache
 		PacketDistributor.sendToServer(
 				new RequestDataPayload(pos, targetClass.getName(), fieldName)
 		);
+
+		var entry = new CacheEntry();
+
+		set(pos, fieldName, entry);
 	}
 
 	/**
@@ -105,6 +135,8 @@ public class ClientDataCache
 		var fieldName = payload.fieldName();
 		var value = payload.value();
 
-		set(pos, fieldName, value);
+		var entry = new CacheEntry(value);
+
+		set(pos, fieldName, entry);
 	}
 }
