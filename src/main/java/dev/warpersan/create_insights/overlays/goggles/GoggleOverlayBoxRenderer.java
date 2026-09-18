@@ -1,6 +1,7 @@
 package dev.warpersan.create_insights.overlays.goggles;
 
 import com.simibubi.create.foundation.gui.RemovedGuiUtils;
+import com.simibubi.create.infrastructure.config.AllConfigs;
 import net.createmod.catnip.gui.element.BoxElement;
 import net.createmod.catnip.gui.element.GuiGameElement;
 import net.createmod.catnip.theme.Color;
@@ -79,6 +80,11 @@ final class GoggleOverlayBoxRenderer
 		var x = Math.min(width / 2, width - textWidth - 20);
 		var y = Math.min(height / 2, height - tooltipHeight - 20);
 
+		var cfg = AllConfigs.client();
+
+		x += cfg.overlayOffsetX.get();
+		y += cfg.overlayOffsetY.get();
+
 		return new Vector2i(x, y);
 	}
 
@@ -90,6 +96,17 @@ final class GoggleOverlayBoxRenderer
 		var background = BoxElement.COLOR_VANILLA_BACKGROUND.scaleAlpha(.75f);
 		var borderTop = BoxElement.COLOR_VANILLA_BORDER.getFirst().copy();
 		var borderBottom = BoxElement.COLOR_VANILLA_BORDER.getSecond().copy();
+
+		var cfg = AllConfigs.client();
+
+		var useCustom = cfg.overlayCustomColor.get();
+
+		if (useCustom)
+		{
+			background = new Color(cfg.overlayBackgroundColor.get());
+			borderTop = new Color(cfg.overlayBorderColorTop.get());
+			borderBottom = new Color(cfg.overlayBorderColorBot.get());
+		}
 
 		return new TooltipColors(background, borderTop, borderBottom);
 	}
