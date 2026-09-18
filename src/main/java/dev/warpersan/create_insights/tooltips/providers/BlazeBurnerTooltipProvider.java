@@ -40,7 +40,7 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 
 		var headerBuilder = new InsightsBuilder()
 				.translate("tooltip.heating")
-				.style(ChatFormatting.GRAY);
+				.header();
 
 		headerBuilder.addTo(tooltip);
 

@@ -26,7 +26,7 @@ public class EncasedFanTooltipProvider extends InsightsTooltipProvider
 		var headerBuilder = new InsightsBuilder();
 		
 		headerBuilder.translate("tooltip.pushing")
-				.style(ChatFormatting.GRAY);
+				.header();
 		
 		headerBuilder.addTo(tooltip);
 

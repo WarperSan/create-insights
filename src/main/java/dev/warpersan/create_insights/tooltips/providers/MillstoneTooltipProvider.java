@@ -10,8 +10,6 @@ import net.minecraft.network.chat.Component;
 
 import java.util.List;
 
-import static net.minecraft.ChatFormatting.GRAY;
-
 /**
  * Provider responsible to display the progress of the given millstone
  */
@@ -52,7 +50,7 @@ public class MillstoneTooltipProvider extends InsightsTooltipProvider
 
 		var builder = new InsightsBuilder()
 				.translate("tooltip.progress")
-				.style(GRAY);
+				.header();
 
 		builder.addTo(tooltip);
 		tooltip.add(bar);

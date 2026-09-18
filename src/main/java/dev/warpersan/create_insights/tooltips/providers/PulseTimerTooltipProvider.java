@@ -31,7 +31,7 @@ public class PulseTimerTooltipProvider extends BrassDiodeTooltipProvider
 
 		var headerBuilder = new InsightsBuilder()
 				.translate("tooltip.timing")
-				.style(ChatFormatting.GRAY);
+				.header();
 
 		headerBuilder.addTo(tooltip);
 
