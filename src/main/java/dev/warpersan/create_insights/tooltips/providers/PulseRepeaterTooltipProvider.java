@@ -4,7 +4,6 @@ import com.simibubi.create.content.redstone.diodes.BrassDiodeBlockEntity;
 import com.simibubi.create.content.redstone.diodes.PulseRepeaterBlockEntity;
 import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
-import dev.warpersan.create_insights.network.ClientDataCache;
 import dev.warpersan.create_insights.tooltips.builders.TimeBuilder;
 import net.createmod.catnip.lang.LangBuilder;
 import net.minecraft.ChatFormatting;
@@ -15,26 +14,19 @@ import java.util.List;
 /**
  * Provider responsible to display the time until the next pules for pulse repeaters
  */
-public class PulseRepeaterTooltipProvider extends InsightsTooltipProvider
+public class PulseRepeaterTooltipProvider extends BrassDiodeTooltipProvider
 {
 	@Override
-	protected boolean onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected boolean onProvide(BrassDiodeBlockEntity blockEntity, GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
 	{
-		var pulseRepeater = context.getBlockEntity(PulseRepeaterBlockEntity.class);
-
-		if (pulseRepeater == null)
+		if (!(blockEntity instanceof PulseRepeaterBlockEntity pulseRepeater))
 			return true;
 
-		var maxTimeValue = ClientDataCache.getOrRequest(
-				pulseRepeater.getBlockPos(),
-				BrassDiodeBlockEntity.class,
-				"maxState.value"
-		);
+		var time = getMaxTime(pulseRepeater);
 
-		if (maxTimeValue == null)
+		if (time == null)
 			return true;
 
-		var time = Integer.parseInt(maxTimeValue);
 		var percent = 1 - pulseRepeater.getProgress();
 
 		var headerBuilder = context.builder()
@@ -61,7 +53,7 @@ public class PulseRepeaterTooltipProvider extends InsightsTooltipProvider
 
 			return waitBuilder.component();
 		}
-		
+
 		var currentTicks = (int) Math.floor(ticks * progress);
 
 		var timeBuilder = new TimeBuilder()
