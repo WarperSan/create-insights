@@ -38,7 +38,7 @@ public class PulseTimerTooltipProvider extends BrassDiodeTooltipProvider
 
 		if (pulseTimer.getBlockState().getValue(DiodeBlock.POWERED))
 		{
-			var disabledBuilder = new LangBuilder(CreateInsights.MOD_ID);
+			var disabledBuilder = context.builder();
 
 			disabledBuilder.translate("tooltip.timing.disabled")
 					.style(ChatFormatting.DARK_GRAY);
