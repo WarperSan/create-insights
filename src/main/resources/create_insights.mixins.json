@@ -1,0 +1,10 @@
+{
+	"package": "dev.warpersan.create_insights.mixin",
+	"mixins": [],
+	"client": [
+		"GoggleOverlayRendererMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
