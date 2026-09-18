@@ -1,12 +1,12 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/WarperSan/create-insights/refs/heads/main/src/main/resources/logo.png?token=GHSAT0AAAAAADSUOP35RYRF3I4DJKC5HFZY2VNYYGA" alt="Logo" height="128"/>
+    <img src="https://raw.githubusercontent.com/WarperSan/create-insights/refs/heads/main/src/main/resources/logo.png" alt="Logo" height="128"/>
 </p>
 
 # Create: Insights
 
 A Create mod add-on adding more information to the Goggles's overlay.
 
-![Demonstration of Blaze Burner Heating](https://raw.githubusercontent.com/WarperSan/create-insights/refs/heads/main/assets/blaze-burner-heating.png?token=GHSAT0AAAAAADSUOP34CWRH5LOWPQYBIAIA2VNYTMQ)
+![Demonstration of Blaze Burner Heating](https://raw.githubusercontent.com/WarperSan/create-insights/refs/heads/main/assets/blaze-burner-heating.png)
 
 ## Features
 
@@ -19,7 +19,7 @@ This mod adds a bunch of tooltips to help players understand their machines bett
 - Time until Depleted for **Pulse Extender**
 - Time until Next Pulse for **Pulse Timer**
 
-![Demonstration of Millstone Progress](https://raw.githubusercontent.com/WarperSan/create-insights/refs/heads/main/assets/millstone-progress.png?token=GHSAT0AAAAAADSUOP3444CEHRZDO2MHLG2A2VNYXJA)
+![Demonstration of Millstone Progress](https://raw.githubusercontent.com/WarperSan/create-insights/refs/heads/main/assets/millstone-progress.png)
 
 ## Compatibility
 
