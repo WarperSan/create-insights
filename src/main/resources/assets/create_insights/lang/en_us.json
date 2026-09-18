@@ -8,6 +8,9 @@
 
 	"create_insights.tooltip.heating": "Heating:",
 	"create_insights.tooltip.heating.none": "None",
+	"create_insights.tooltip.heating.low": "🔥",
+	"create_insights.tooltip.heating.medium": "🔥🔥",
+	"create_insights.tooltip.heating.high": "🔥🔥🔥",
 
 	"create_insights.tooltip.timing": "Timing:"
 }

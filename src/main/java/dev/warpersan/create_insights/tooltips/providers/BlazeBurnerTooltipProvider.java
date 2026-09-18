@@ -2,7 +2,6 @@ package dev.warpersan.create_insights.tooltips.providers;
 
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlockEntity;
-import com.simibubi.create.foundation.utility.CreateLang;
 import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.network.ClientDataCache;
@@ -70,12 +69,8 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 			boolean isCreative
 	)
 	{
-		final var fireIcon = "\uD83D\uDD25";
-		final var fireCountForSmouldering = 1;
-		final var fireCountForKindled = 2;
-		final var fireCountForSeething = 3;
+		var langKey = "";
 
-		var fireCount = 0;
 		var textColor = ChatFormatting.RESET;
 
 		switch (fuelType)
@@ -85,36 +80,35 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 				if (isCreative)
 				{
 					if (heatLevel == BlazeBurnerBlock.HeatLevel.SEETHING)
-						fireCount = fireCountForSeething;
+						langKey = "tooltip.heating.high";
 					else if (heatLevel == BlazeBurnerBlock.HeatLevel.KINDLED)
-						fireCount = fireCountForKindled;
+						langKey = "tooltip.heating.medium";
 					else
-						fireCount = fireCountForSmouldering;
+						langKey = "tooltip.heating.low";
 
 					textColor = ChatFormatting.DARK_PURPLE;
 				} else
 				{
-					fireCount = fireCountForSmouldering;
+					langKey = "tooltip.heating.low";
 					textColor = ChatFormatting.DARK_GRAY;
 				}
 			}
 			case NORMAL ->
 			{
-				fireCount = fireCountForKindled;
+				langKey = "tooltip.heating.medium";
 				textColor = ChatFormatting.DARK_RED;
 			}
 			case SPECIAL ->
 			{
-				fireCount = fireCountForSeething;
+				langKey = "tooltip.heating.high";
 				textColor = ChatFormatting.DARK_AQUA;
 			}
 		}
 
-		var output = "";
-
-		output += fireIcon.repeat(fireCount);
-
-		return CreateLang.text(output).style(textColor).component();
+		return new LangBuilder(CreateInsights.MOD_ID)
+				.translate(langKey)
+				.style(textColor)
+				.component();
 	}
 
 	/**
@@ -125,7 +119,7 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 		if (isCreative)
 		{
 			//noinspection UnnecessaryUnicodeEscape
-			return CreateLang.text("\u221E").component();
+			return Component.literal("\u221E");
 		}
 
 		var timeBuilder = new TimeBuilder()
