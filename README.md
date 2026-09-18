@@ -1,6 +1,6 @@
-<p align="center">
+<div align="center">
     <img src="https://raw.githubusercontent.com/WarperSan/create-insights/refs/heads/main/src/main/resources/logo.png" alt="Logo" height="128"/>
-</p>
+</div>
 
 # Create: Insights
 
