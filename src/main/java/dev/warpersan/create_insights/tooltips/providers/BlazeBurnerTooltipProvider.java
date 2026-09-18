@@ -9,6 +9,7 @@ import dev.warpersan.create_insights.tooltips.builders.TimeBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 			return true;
 
 		var remainingBurnTime = ClientDataCache.getOrRequest(
-				blazeBurner.getBlockPos(),
+				blazeBurner,
 				BlazeBurnerBlockEntity.class,
 				"remainingBurnTime"
 		);

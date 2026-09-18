@@ -75,6 +75,7 @@ public class ServerDataCache
 		);
 
 		return new ResponseDataPayload(
+				blockEntity.getLevel().dimension().location(),
 				pos,
 				fieldName,
 				String.valueOf(value)

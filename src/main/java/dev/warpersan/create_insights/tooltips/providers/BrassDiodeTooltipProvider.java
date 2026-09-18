@@ -40,7 +40,7 @@ public abstract class BrassDiodeTooltipProvider extends InsightsTooltipProvider
 	protected static Integer getMaxTime(BrassDiodeBlockEntity blockEntity)
 	{
 		var maxTimeValue = ClientDataCache.getOrRequest(
-				blockEntity.getBlockPos(),
+				blockEntity,
 				BrassDiodeBlockEntity.class,
 				"maxState.value"
 		);

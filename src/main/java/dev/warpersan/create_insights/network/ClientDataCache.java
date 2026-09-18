@@ -1,6 +1,8 @@
 package dev.warpersan.create_insights.network;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
@@ -71,18 +73,18 @@ public class ClientDataCache
 	/**
 	 * Computes the key of the given field at the given position
 	 */
-	private static String getKey(BlockPos pos, String fieldName)
+	private static String getKey(ResourceLocation dimension, BlockPos pos, String fieldName)
 	{
-		return pos.asLong() + "#" + fieldName;
+		return dimension + "#" + pos.asLong() + "#" + fieldName;
 	}
 
 	/**
 	 * Gets the entry of the given field at the given position
 	 */
 	@Nullable
-	private static CacheEntry get(BlockPos pos, String fieldName)
+	private static CacheEntry get(ResourceLocation dimension, BlockPos pos, String fieldName)
 	{
-		var cacheKey = getKey(pos, fieldName);
+		var cacheKey = getKey(dimension, pos, fieldName);
 
 		return CLIENT_CACHE.getOrDefault(cacheKey, null);
 	}
@@ -90,9 +92,9 @@ public class ClientDataCache
 	/**
 	 * Sets the given entry to the given field at the given position
 	 */
-	private static void set(BlockPos pos, String fieldName, CacheEntry entry)
+	private static void set(ResourceLocation dimension, BlockPos pos, String fieldName, CacheEntry entry)
 	{
-		var cacheKey = getKey(pos, fieldName);
+		var cacheKey = getKey(dimension, pos, fieldName);
 
 		CLIENT_CACHE.put(cacheKey, entry);
 	}
@@ -100,9 +102,9 @@ public class ClientDataCache
 	/**
 	 * Sets the given entry to the given field at the given position if no other entry is present
 	 */
-	private static void setIfAbsent(BlockPos pos, String fieldName, CacheEntry entry)
+	private static void setIfAbsent(ResourceLocation dimension, BlockPos pos, String fieldName, CacheEntry entry)
 	{
-		var cacheKey = getKey(pos, fieldName);
+		var cacheKey = getKey(dimension, pos, fieldName);
 
 		CLIENT_CACHE.putIfAbsent(cacheKey, entry);
 	}
@@ -111,12 +113,42 @@ public class ClientDataCache
 	 * Gets the value of the given field, or requests it for future calls
 	 */
 	@Nullable
-	public static String getOrRequest(BlockPos pos, Class<?> targetClass, String fieldName)
+	public static String getOrRequest(
+			BlockEntity blockEntity,
+			Class<?> targetClass,
+			String fieldName
+	)
 	{
-		var entry = get(pos, fieldName);
+		var level = blockEntity.getLevel();
+
+		if (level == null)
+			return null;
+
+		var dimension = level.dimension();
+		
+		return getOrRequest(
+				dimension.location(),
+				blockEntity.getBlockPos(),
+				targetClass,
+				fieldName
+		);
+	}
+
+	/**
+	 * Gets the value of the given field, or requests it for future calls
+	 */
+	@Nullable
+	public static String getOrRequest(
+			ResourceLocation dimension,
+			BlockPos pos,
+			Class<?> targetClass,
+			String fieldName
+	)
+	{
+		var entry = get(dimension, pos, fieldName);
 
 		if (entry == null || !entry.isUpToDate())
-			request(pos, targetClass, fieldName);
+			request(dimension, pos, targetClass, fieldName);
 
 		if (entry != null)
 			return entry.value();
@@ -127,15 +159,25 @@ public class ClientDataCache
 	/**
 	 * Requests the given field to be updated
 	 */
-	private static void request(BlockPos pos, Class<?> targetClass, String fieldName)
+	private static void request(
+			ResourceLocation dimension,
+			BlockPos pos,
+			Class<?> targetClass,
+			String fieldName
+	)
 	{
-		PacketDistributor.sendToServer(
-				new RequestDataPayload(pos, targetClass.getName(), fieldName)
+		var data = new RequestDataPayload(
+				dimension,
+				pos,
+				targetClass.getName(),
+				fieldName
 		);
+
+		PacketDistributor.sendToServer(data);
 
 		var entry = new CacheEntry();
 
-		setIfAbsent(pos, fieldName, entry);
+		setIfAbsent(dimension, pos, fieldName, entry);
 	}
 
 	/**
@@ -151,12 +193,13 @@ public class ClientDataCache
 	 */
 	public static void handleResponse(ResponseDataPayload payload)
 	{
+		var dimension = payload.dimension();
 		var pos = payload.pos();
 		var fieldName = payload.fieldName();
 		var value = payload.value();
 
 		var entry = new CacheEntry(value);
 
-		set(pos, fieldName, entry);
+		set(dimension, pos, fieldName, entry);
 	}
 }
