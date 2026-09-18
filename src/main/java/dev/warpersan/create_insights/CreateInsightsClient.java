@@ -34,6 +34,7 @@ public class CreateInsightsClient
 		GoggleTooltipCollector.addProvider(new EncasedFanTooltipProvider());
 		GoggleTooltipCollector.addProvider(new CrushingWheelTooltipProvider());
 		GoggleTooltipCollector.addProvider(new PistonExtensionPoleTooltipProvider());
+		GoggleTooltipCollector.addProvider(new DisplayAssemblyExceptionsTooltipProvider());
 	}
 
 	@SubscribeEvent
