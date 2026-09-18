@@ -1,7 +1,7 @@
 package dev.warpersan.create_insights.events;
 
 import dev.warpersan.create_insights.network.RequestDataPayload;
-import dev.warpersan.create_insights.network.ServerPacketHandler;
+import dev.warpersan.create_insights.network.ServerDataCache;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -21,7 +21,7 @@ public class ServerEvents
 		registrar.playToServer(
 				RequestDataPayload.TYPE,
 				RequestDataPayload.CODEC,
-				ServerPacketHandler::handleRequest
+				ServerDataCache::handleRequest
 		);
 	}
 }
