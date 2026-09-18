@@ -2,6 +2,7 @@ package dev.warpersan.create_insights.tooltips.providers;
 
 import com.simibubi.create.content.kinetics.fan.EncasedFanBlockEntity;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
+import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
@@ -22,14 +23,14 @@ public class EncasedFanTooltipProvider extends InsightsTooltipProvider
 
 		var maxDistance = encasedFan.airCurrent.maxDistance;
 		
-		var headerBuilder = context.builder();
+		var headerBuilder = new InsightsBuilder();
 		
 		headerBuilder.translate("tooltip.pushing")
 				.style(ChatFormatting.GRAY);
 		
 		headerBuilder.addTo(tooltip);
 
-		var builder = context.builder();
+		var builder = new InsightsBuilder();
 
 		builder.translate("tooltip.pushing.distance")
 				.style(ChatFormatting.DARK_GRAY);

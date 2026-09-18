@@ -5,6 +5,7 @@ import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.recipes.RecipeFinder;
 import dev.warpersan.create_insights.tooltips.ProgressBarTooltip;
+import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import net.minecraft.network.chat.Component;
 
 import java.util.List;
@@ -49,7 +50,7 @@ public class MillstoneTooltipProvider extends InsightsTooltipProvider
 
 		var bar = ProgressBarTooltip.getColoredBar(8, percent);
 
-		var builder = context.builder()
+		var builder = new InsightsBuilder()
 				.translate("tooltip.progress")
 				.style(GRAY);
 

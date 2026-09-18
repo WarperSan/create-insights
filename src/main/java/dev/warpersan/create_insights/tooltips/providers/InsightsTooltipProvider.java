@@ -2,6 +2,7 @@ package dev.warpersan.create_insights.tooltips.providers;
 
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.api.ITooltipProvider;
+import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 
@@ -17,8 +18,7 @@ public abstract class InsightsTooltipProvider implements ITooltipProvider
 	public boolean provide(GoggleTooltipCollector.TooltipContext context)
 	{
 		// Skip if not wearing goggles
-		if (!context.isWearingGoggles())
-			return true;
+		if (!context.isWearingGoggles()) return true;
 
 		var childTooltip = new ArrayList<Component>();
 
@@ -28,12 +28,11 @@ public abstract class InsightsTooltipProvider implements ITooltipProvider
 		{
 			var tooltip = new ArrayList<Component>();
 
-			if (context.hasTooltip())
-				tooltip.add(CommonComponents.EMPTY);
+			if (context.hasTooltip()) tooltip.add(CommonComponents.EMPTY);
 
-			context.builder()
-					.translate("gui.goggles.insights_stats")
-					.forGoggles(tooltip);
+			var headerBuilder = new InsightsBuilder().translate("gui.goggles.insights_stats");
+
+			headerBuilder.forGoggles(tooltip);
 
 			for (var component : childTooltip)
 			{
@@ -43,9 +42,9 @@ public abstract class InsightsTooltipProvider implements ITooltipProvider
 					continue;
 				}
 
-				context.builder()
-						.add(component)
-						.forGoggles(tooltip);
+				var subBuilder = new InsightsBuilder().add(component);
+
+				subBuilder.forGoggles(tooltip);
 			}
 
 			context.addAll(tooltip);
@@ -54,8 +53,5 @@ public abstract class InsightsTooltipProvider implements ITooltipProvider
 		return shouldContinue;
 	}
 
-	protected abstract boolean onProvide(
-			GoggleTooltipCollector.TooltipContext context,
-			List<Component> tooltip
-	);
+	protected abstract boolean onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip);
 }

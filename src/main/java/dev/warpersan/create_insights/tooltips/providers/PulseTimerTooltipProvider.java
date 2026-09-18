@@ -2,10 +2,9 @@ package dev.warpersan.create_insights.tooltips.providers;
 
 import com.simibubi.create.content.redstone.diodes.BrassDiodeBlockEntity;
 import com.simibubi.create.content.redstone.diodes.PulseTimerBlockEntity;
-import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
+import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.builders.TimeBuilder;
-import net.createmod.catnip.lang.LangBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.DiodeBlock;
@@ -30,7 +29,7 @@ public class PulseTimerTooltipProvider extends BrassDiodeTooltipProvider
 
 		var percent = 1 - pulseTimer.getProgress();
 
-		var headerBuilder = context.builder()
+		var headerBuilder = new InsightsBuilder()
 				.translate("tooltip.timing")
 				.style(ChatFormatting.GRAY);
 
@@ -38,7 +37,7 @@ public class PulseTimerTooltipProvider extends BrassDiodeTooltipProvider
 
 		if (pulseTimer.getBlockState().getValue(DiodeBlock.POWERED))
 		{
-			var disabledBuilder = context.builder();
+			var disabledBuilder = new InsightsBuilder();
 
 			disabledBuilder.translate("tooltip.timing.disabled")
 					.style(ChatFormatting.DARK_GRAY);
@@ -64,7 +63,7 @@ public class PulseTimerTooltipProvider extends BrassDiodeTooltipProvider
 
 		var time = timeBuilder.getTime();
 
-		var builder = new LangBuilder(CreateInsights.MOD_ID);
+		var builder = new InsightsBuilder();
 
 		builder.translate("tooltip.timing.pulse")
 				.style(ChatFormatting.DARK_GRAY);

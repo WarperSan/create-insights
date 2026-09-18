@@ -2,11 +2,10 @@ package dev.warpersan.create_insights.tooltips.providers;
 
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlockEntity;
-import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.network.ClientDataCache;
+import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.builders.TimeBuilder;
-import net.createmod.catnip.lang.LangBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
@@ -39,13 +38,13 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 		var isCreative = blazeBurner.isCreative();
 		var heatLevel = blazeBurner.getHeatLevelFromBlock();
 
-		var headerBuilder = context.builder()
+		var headerBuilder = new InsightsBuilder()
 				.translate("tooltip.heating")
 				.style(ChatFormatting.GRAY);
 
 		headerBuilder.addTo(tooltip);
 
-		var builder = context.builder();
+		var builder = new InsightsBuilder();
 		var fuelTypeDisplay = getFuelTypeDisplay(
 				fuelType,
 				heatLevel,
@@ -110,7 +109,7 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 			}
 		}
 
-		return new LangBuilder(CreateInsights.MOD_ID)
+		return new InsightsBuilder()
 				.translate(langKey)
 				.style(textColor)
 				.component();
@@ -141,7 +140,7 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 
 		if (time.isBlank())
 		{
-			var noneBuilder = new LangBuilder(CreateInsights.MOD_ID);
+			var noneBuilder = new InsightsBuilder();
 
 			noneBuilder.translate("tooltip.heating.none");
 
