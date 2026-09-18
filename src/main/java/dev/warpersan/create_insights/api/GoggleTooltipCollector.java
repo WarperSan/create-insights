@@ -36,11 +36,27 @@ public final class GoggleTooltipCollector
 		}
 
 		/**
+		 * Gets the level
+		 */
+		public Level level()
+		{
+			return level;
+		}
+
+		/**
 		 * Gets the player
 		 */
 		public Player player()
 		{
 			return player;
+		}
+
+		/**
+		 * Gets the position
+		 */
+		public BlockPos pos()
+		{
+			return pos;
 		}
 
 		/**
