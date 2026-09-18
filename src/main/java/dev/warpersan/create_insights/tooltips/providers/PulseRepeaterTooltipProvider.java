@@ -34,7 +34,11 @@ public class PulseRepeaterTooltipProvider extends BrassDiodeTooltipProvider
 
 		headerBuilder.addTo(tooltip);
 
-		tooltip.add(getTimeDisplay(time, percent));
+		var timeDisplay = getTimeDisplay(time, percent);
+
+		var builder = new InsightsBuilder();
+		builder.add(timeDisplay);
+		builder.indentInto(tooltip);
 		return true;
 	}
 

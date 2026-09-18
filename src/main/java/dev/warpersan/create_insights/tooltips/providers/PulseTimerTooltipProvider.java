@@ -42,9 +42,16 @@ public class PulseTimerTooltipProvider extends BrassDiodeTooltipProvider
 			disabledBuilder.translate("tooltip.timing.disabled")
 					.style(ChatFormatting.DARK_GRAY);
 
-			disabledBuilder.addTo(tooltip);
+			disabledBuilder.indentInto(tooltip);
 		} else
-			tooltip.add(getTimeDisplay(time, percent));
+		{
+			var timeDisplay = getTimeDisplay(time, percent);
+
+			var builder = new InsightsBuilder();
+			builder.add(timeDisplay);
+			builder.indentInto(tooltip);
+		}
+
 		return true;
 	}
 

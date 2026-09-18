@@ -44,23 +44,19 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 
 		headerBuilder.addTo(tooltip);
 
-		var builder = new InsightsBuilder();
 		var fuelTypeDisplay = getFuelTypeDisplay(
 				fuelType,
 				heatLevel,
 				isCreative
 		);
-		var timeDisplay = getTimeDisplay(
-				time,
-				fuelType,
-				isCreative
-		);
+		var timeDisplay = getTimeDisplay(time, isCreative);
 
+		var builder = new InsightsBuilder();
 		builder.add(fuelTypeDisplay);
 		builder.text(" ");
 		builder.add(timeDisplay);
+		builder.indentInto(tooltip);
 
-		builder.addTo(tooltip);
 		return true;
 	}
 
@@ -118,11 +114,7 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 	/**
 	 * Creates a component for the given time in ticks
 	 */
-	private static Component getTimeDisplay(
-			int ticks,
-			BlazeBurnerBlockEntity.FuelType fuelType,
-			boolean isCreative
-	)
+	private static Component getTimeDisplay(int ticks, boolean isCreative)
 	{
 		if (isCreative)
 		{
