@@ -2,7 +2,6 @@ package dev.warpersan.create_insights.network;
 
 import net.minecraft.core.BlockPos;
 import net.neoforged.neoforge.network.PacketDistributor;
-import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -137,6 +136,14 @@ public class ClientDataCache
 		var entry = new CacheEntry();
 
 		setIfAbsent(pos, fieldName, entry);
+	}
+
+	/**
+	 * Clears all cache
+	 */
+	public static void clear()
+	{
+		CLIENT_CACHE.clear();
 	}
 
 	/**
