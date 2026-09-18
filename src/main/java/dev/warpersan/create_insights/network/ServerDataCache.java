@@ -67,6 +67,11 @@ public class ServerDataCache
 
 		if (blockEntity == null)
 			return null;
+		
+		var blockEntityLevel = blockEntity.getLevel();
+		
+		if (blockEntityLevel == null)
+			return null;
 
 		var value = getValue(
 				blockEntity,
@@ -75,7 +80,7 @@ public class ServerDataCache
 		);
 
 		return new ResponseDataPayload(
-				blockEntity.getLevel().dimension().location(),
+				blockEntityLevel.dimension().location(),
 				pos,
 				fieldName,
 				String.valueOf(value)
