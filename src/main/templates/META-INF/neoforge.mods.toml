@@ -1,12 +1,10 @@
 modLoader="javafml"
 loaderVersion="${loader_version_range}"
 
-# The license for you mod. This is mandatory metadata and allows for easier comprehension of your redistributive properties.
-# Review your options at https://choosealicense.com/. All rights reserved is the default copyright stance, and is thus the default here.
 license="${mod_license}"
 
 # A URL to refer people to when problems occur with this mod
-#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
+issueTrackerURL="https://github.com/WarperSan/create-insights/issues/"
 
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]]
@@ -18,7 +16,7 @@ displayName="${mod_name}"
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 
 # A URL for the "homepage" for this mod, displayed in the mod UI
-#displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
+displayURL="https://github.com/WarperSan/create-insights/"
 
 # A file name (in the root of the mod JAR) containing a logo for display
 #logoFile="examplemod.png" #optional
@@ -28,7 +26,7 @@ displayName="${mod_name}"
 
 authors="WarperSan"
 description='''
-Example mod description.
+Create addon expanding on the Goggles functionalities.
 '''
 
 [[mixins]]
@@ -62,11 +60,33 @@ config="${mod_id}.mixins.json"
 [[dependencies.${mod_id}]]
     modId="minecraft"
     type="required"
-    # This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
 
+# Dependency to Create
+[[dependencies.${mod_id}]]
+    modId="create"
+    type="required"
+    versionRange="[${create_version},)"
+    ordering="AFTER"
+    side="BOTH"
+
+# Dependency to Ponder
+[[dependencies.${mod_id}]]
+    modId="ponder"
+    type="required"
+    versionRange="[${ponder_version},)"
+    ordering="AFTER"
+    side="BOTH"
+
+# Dependency to Flywheel
+[[dependencies.${mod_id}]]
+    modId="flywheel"
+    type="required"
+    versionRange="[${flywheel_version},)"
+    ordering="AFTER"
+    side="BOTH"
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
 # that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
 # stop your mod loading on the server for example.
