@@ -51,10 +51,15 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 				heatLevel,
 				isCreative
 		);
+		var timeDisplay = getTimeDisplay(
+				time,
+				fuelType,
+				isCreative
+		);
 
 		builder.add(fuelTypeDisplay);
 		builder.text(" ");
-		builder.add(getTimeDisplay(time, isCreative));
+		builder.add(timeDisplay);
 
 		builder.addTo(tooltip);
 		return true;
@@ -114,7 +119,11 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 	/**
 	 * Creates a component for the given time in ticks
 	 */
-	private static Component getTimeDisplay(int ticks, boolean isCreative)
+	private static Component getTimeDisplay(
+			int ticks,
+			BlazeBurnerBlockEntity.FuelType fuelType,
+			boolean isCreative
+	)
 	{
 		if (isCreative)
 		{
@@ -132,8 +141,12 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 
 		if (time.isBlank())
 		{
-			var noneBuilder = new LangBuilder(CreateInsights.MOD_ID)
-					.translate("tooltip.heating.none");
+			var noneBuilder = new LangBuilder(CreateInsights.MOD_ID);
+
+			if (fuelType == BlazeBurnerBlockEntity.FuelType.NONE)
+				noneBuilder.translate("tooltip.heating.none");
+			else
+				noneBuilder.text("0s");
 
 			return noneBuilder.component();
 		}
