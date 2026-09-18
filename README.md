@@ -1,25 +1,39 @@
+<p align="center">
+    <img src="https://raw.githubusercontent.com/WarperSan/create-insights/refs/heads/main/src/main/resources/logo.png?token=GHSAT0AAAAAADSUOP35RYRF3I4DJKC5HFZY2VNYYGA" alt="Logo" height="128"/>
+</p>
 
-Installation information
-=======
+# Create: Insights
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+A Create mod add-on adding more information to the Goggles's overlay.
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+![Demonstration of Blaze Burner Heating](https://raw.githubusercontent.com/WarperSan/create-insights/refs/heads/main/assets/blaze-burner-heating.png?token=GHSAT0AAAAAADSUOP34CWRH5LOWPQYBIAIA2VNYTMQ)
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+## Features
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+This mod adds a bunch of tooltips to help players understand their machines better:
+- Progress bar for **Millstone**
+- Progress bar for **Crushing Wheel**
+- Remaining Heat Time for **Blaze Burner**
+- Push Distance for **Encased Fan**
+- Time until Next Pulse for **Pulse Repeater**
+- Time until Depleted for **Pulse Extender**
+- Time until Next Pulse for **Pulse Timer**
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+![Demonstration of Millstone Progress](https://raw.githubusercontent.com/WarperSan/create-insights/refs/heads/main/assets/millstone-progress.png?token=GHSAT0AAAAAADSUOP3444CEHRZDO2MHLG2A2VNYXJA)
+
+## Compatibility
+
+This mod overrides Create's default tooltip rendering. Other mods that add tooltips directly using the original rendering **will not work**.
+
+However, if your mod uses `IHaveGoggleInformation`, the tooltip will also work here.
+
+## Contributing
+
+Contributions are welcome! If you encounter a bug or have a feature request, please [open an issue](https://github.com/WarperSan/create_insights/issues/new).
+
+<div align="center">
+    <sub>
+        <hr>
+		Made with ❤️ for the modding community
+    </sub>
+</div>
