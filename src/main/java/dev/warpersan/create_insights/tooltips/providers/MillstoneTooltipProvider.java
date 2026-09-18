@@ -1,5 +1,7 @@
 package dev.warpersan.create_insights.tooltips.providers;
 
+import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
 import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity;
 import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
@@ -8,6 +10,7 @@ import dev.warpersan.create_insights.tooltips.ProgressBarTooltip;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import net.minecraft.network.chat.Component;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -23,7 +26,7 @@ public class MillstoneTooltipProvider extends InsightsTooltipProvider
 		if (millstone == null)
 			return true;
 
-		var recipe = RecipeFinder.getMillingRecipe(millstone);
+		var recipe = getMillingRecipe(millstone);
 
 		if (recipe == null)
 		{
@@ -56,5 +59,20 @@ public class MillstoneTooltipProvider extends InsightsTooltipProvider
 		tooltip.add(bar);
 
 		return true;
+	}
+
+	@Nullable
+	private static MillingRecipe getMillingRecipe(MillstoneBlockEntity millstone)
+	{
+		var recipe = RecipeFinder.getRecipe(
+				millstone,
+				AllRecipeTypes.MILLING,
+				millstone.inputInv
+		);
+
+		if (recipe instanceof MillingRecipe millingRecipe)
+			return millingRecipe;
+
+		return null;
 	}
 }

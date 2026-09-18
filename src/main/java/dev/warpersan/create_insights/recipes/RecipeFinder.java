@@ -37,33 +37,12 @@ public class RecipeFinder {
      * Gets the recipe of the given block entity
      */
     @Nullable
-    private static Recipe<RecipeInput> getRecipe(BlockEntity blockEntity, AllRecipeTypes recipes, IItemHandler inventory) {
+	public static Recipe<RecipeInput> getRecipe(BlockEntity blockEntity, AllRecipeTypes recipes, IItemHandler inventory) {
         var level = blockEntity.getLevel();
 
         if (level == null)
             return null;
 
         return getRecipe(recipes, inventory, level);
-    }
-
-    @Nullable
-    public static MillingRecipe getMillingRecipe(MillstoneBlockEntity millstone) {
-        var recipe = getRecipe(
-                millstone,
-                AllRecipeTypes.MILLING,
-                millstone.inputInv
-        );
-
-        if (recipe instanceof MillingRecipe millingRecipe)
-            return millingRecipe;
-
-        return null;
-    }
-
-    @Nullable
-    public static StandardProcessingRecipe<RecipeWrapper> getCrushingRecipe(CrushingWheelControllerBlockEntity crushingWheel) {
-        var recipe = crushingWheel.findRecipe();
-
-        return recipe.map(RecipeHolder::value).orElse(null);
     }
 }
