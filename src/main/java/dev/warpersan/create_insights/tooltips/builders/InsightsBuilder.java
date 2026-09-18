@@ -1,11 +1,8 @@
 package dev.warpersan.create_insights.tooltips.builders;
 
 import dev.warpersan.create_insights.CreateInsights;
-import joptsimple.internal.Strings;
 import net.createmod.catnip.lang.LangBuilder;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import org.jetbrains.annotations.NotNull;
 

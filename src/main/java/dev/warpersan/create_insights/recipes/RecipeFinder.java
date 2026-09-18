@@ -1,10 +1,6 @@
 package dev.warpersan.create_insights.recipes;
 
 import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlockEntity;
-import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
-import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity;
-import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;

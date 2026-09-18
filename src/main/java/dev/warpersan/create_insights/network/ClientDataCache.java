@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ClientDataCache
 {
 	private static final Map<String, CacheEntry> CLIENT_CACHE = new ConcurrentHashMap<>();
-	private static final long CACHE_EXPIRY_MS = 200;
+	private static final long CACHE_EXPIRY_MS = 1_000;
 
 	/**
 	 * Class holding information about a cached value

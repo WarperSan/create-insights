@@ -1,8 +1,6 @@
 package dev.warpersan.create_insights.api;
 
 import com.simibubi.create.content.equipment.goggles.GogglesItem;
-import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
-import net.createmod.catnip.lang.LangBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;

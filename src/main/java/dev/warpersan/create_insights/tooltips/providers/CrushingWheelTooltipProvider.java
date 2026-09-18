@@ -2,11 +2,9 @@ package dev.warpersan.create_insights.tooltips.providers;
 
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelBlockEntity;
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlockEntity;
-import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity;
 import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
-import dev.warpersan.create_insights.recipes.RecipeFinder;
 import dev.warpersan.create_insights.structures.StructureFinder;
 import dev.warpersan.create_insights.tooltips.ProgressBarTooltip;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
