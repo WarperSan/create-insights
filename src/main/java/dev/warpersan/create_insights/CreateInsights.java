@@ -22,16 +22,5 @@ public class CreateInsights
 	{
 		modEventBus.register(ClientEvents.class);
 		modEventBus.register(ServerEvents.class);
-		modEventBus.register(this);
-	}
-
-	@SubscribeEvent
-	private void registerGuiEvents(RegisterGuiLayersEvent event)
-	{
-		event.registerAbove(
-				VanillaGuiLayers.HOTBAR,
-				ResourceLocation.fromNamespaceAndPath(CreateInsights.MOD_ID, "goggle_info"),
-				GoggleOverlayRenderer.OVERLAY
-		);
 	}
 }
