@@ -37,13 +37,13 @@ public class CreateInsightsClient
 
 		// Custom
 		GoggleTooltipCollector.addProvider(new BlazeBurnerTooltipProvider());
-		GoggleTooltipCollector.addProvider(new PulseRepeaterTooltipProvider());
-		GoggleTooltipCollector.addProvider(new PulseTimerTooltipProvider());
-		GoggleTooltipCollector.addProvider(new PulseExtenderTooltipProvider());
-		GoggleTooltipCollector.addProvider(new MillstoneTooltipProvider());
-		GoggleTooltipCollector.addProvider(new EncasedFanTooltipProvider());
 		GoggleTooltipCollector.addProvider(new CrushingWheelTooltipProvider());
 		GoggleTooltipCollector.addProvider(new DepotTooltipProvider());
+		GoggleTooltipCollector.addProvider(new EncasedFanTooltipProvider());
+		GoggleTooltipCollector.addProvider(new MillstoneTooltipProvider());
+		GoggleTooltipCollector.addProvider(new PulseExtenderTooltipProvider());
+		GoggleTooltipCollector.addProvider(new PulseTimerTooltipProvider());
+		GoggleTooltipCollector.addProvider(new PulseRepeaterTooltipProvider());
 	}
 
 	@SubscribeEvent
