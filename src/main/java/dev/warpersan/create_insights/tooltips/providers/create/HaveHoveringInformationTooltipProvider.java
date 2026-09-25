@@ -1,4 +1,4 @@
-package dev.warpersan.create_insights.tooltips.providers;
+package dev.warpersan.create_insights.tooltips.providers.create;
 
 import com.simibubi.create.api.equipment.goggles.IHaveHoveringInformation;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
@@ -7,6 +7,9 @@ import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;
 
+/**
+ * Provider responsible to handle {@link IHaveHoveringInformation}
+ */
 public class HaveHoveringInformationTooltipProvider implements ITooltipProvider
 {
 	@Override

@@ -5,6 +5,7 @@ import dev.warpersan.create_insights.network.ClientDataCache;
 import dev.warpersan.create_insights.tooltips.providers.*;
 import dev.warpersan.create_insights.tooltips.providers.create.DisplayAssemblyExceptionsTooltipProvider;
 import dev.warpersan.create_insights.tooltips.providers.create.HaveGoggleInformationTooltipProvider;
+import dev.warpersan.create_insights.tooltips.providers.create.HaveHoveringInformationTooltipProvider;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
