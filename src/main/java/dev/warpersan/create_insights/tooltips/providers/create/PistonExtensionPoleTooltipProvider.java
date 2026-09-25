@@ -1,4 +1,4 @@
-package dev.warpersan.create_insights.tooltips.providers;
+package dev.warpersan.create_insights.tooltips.providers.create;
 
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.contraptions.piston.MechanicalPistonBlock;
