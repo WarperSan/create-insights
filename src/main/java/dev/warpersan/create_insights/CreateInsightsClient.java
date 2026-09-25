@@ -29,7 +29,13 @@ public class CreateInsightsClient
 	@SubscribeEvent
 	private static void onClientSetup(FMLClientSetupEvent event)
 	{
+		// Create
 		GoggleTooltipCollector.addProvider(new HaveGoggleInformationTooltipProvider());
+		GoggleTooltipCollector.addProvider(new HaveHoveringInformationTooltipProvider());
+		GoggleTooltipCollector.addProvider(new DisplayAssemblyExceptionsTooltipProvider());
+		GoggleTooltipCollector.addProvider(new PistonExtensionPoleTooltipProvider());
+
+		// Custom
 		GoggleTooltipCollector.addProvider(new BlazeBurnerTooltipProvider());
 		GoggleTooltipCollector.addProvider(new PulseRepeaterTooltipProvider());
 		GoggleTooltipCollector.addProvider(new PulseTimerTooltipProvider());
@@ -38,16 +44,13 @@ public class CreateInsightsClient
 		GoggleTooltipCollector.addProvider(new EncasedFanTooltipProvider());
 		GoggleTooltipCollector.addProvider(new CrushingWheelTooltipProvider());
 		GoggleTooltipCollector.addProvider(new DepotTooltipProvider());
-		GoggleTooltipCollector.addProvider(new PistonExtensionPoleTooltipProvider());
-		GoggleTooltipCollector.addProvider(new DisplayAssemblyExceptionsTooltipProvider());
-		GoggleTooltipCollector.addProvider(new HaveHoveringInformationTooltipProvider());
 	}
 
 	@SubscribeEvent
 	private static void onLeave(ClientPlayerNetworkEvent.LoggingOut event)
 	{
 		var player = event.getPlayer();
-		
+
 		if (player == null)
 			return;
 
