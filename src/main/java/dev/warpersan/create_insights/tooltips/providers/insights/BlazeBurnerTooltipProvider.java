@@ -18,12 +18,12 @@ import java.util.List;
 public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 {
 	@Override
-	protected boolean onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected void onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
 	{
 		var blazeBurner = context.getBlockEntity(BlazeBurnerBlockEntity.class);
 
 		if (blazeBurner == null)
-			return true;
+			return;
 
 		var remainingBurnTime = ClientDataCache.getOrRequest(
 				blazeBurner,
@@ -32,7 +32,7 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 		);
 
 		if (remainingBurnTime == null)
-			return true;
+			return;
 
 		var time = Integer.parseInt(remainingBurnTime);
 		var fuelType = blazeBurner.getActiveFuel();
@@ -57,8 +57,6 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 		builder.text(" ");
 		builder.add(timeDisplay);
 		builder.indentInto(tooltip);
-
-		return true;
 	}
 
 	/**

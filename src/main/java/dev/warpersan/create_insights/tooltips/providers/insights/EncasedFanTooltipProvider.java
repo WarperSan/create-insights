@@ -15,12 +15,12 @@ import java.util.List;
 public class EncasedFanTooltipProvider extends InsightsTooltipProvider
 {
 	@Override
-	protected boolean onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected void onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
 	{
 		var encasedFan = context.getBlockEntity(EncasedFanBlockEntity.class);
 
 		if (encasedFan == null)
-			return true;
+			return;
 
 		var maxDistance = encasedFan.airCurrent.maxDistance;
 		
@@ -42,7 +42,5 @@ public class EncasedFanTooltipProvider extends InsightsTooltipProvider
 		builder.text(" blocks");
 
 		builder.indentInto(tooltip);
-
-		return true;
 	}
 }

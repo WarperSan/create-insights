@@ -16,15 +16,15 @@ import java.util.List;
 public class PulseExtenderTooltipProvider extends BrassDiodeTooltipProvider
 {
 	@Override
-	protected boolean onProvide(BrassDiodeBlockEntity blockEntity, GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected void onProvide(BrassDiodeBlockEntity blockEntity, GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
 	{
 		if (!(blockEntity instanceof PulseExtenderBlockEntity pulseExtender))
-			return true;
+			return;
 
 		var time = getMaxTime(pulseExtender);
 
 		if (time == null)
-			return true;
+			return;
 
 		var percent = pulseExtender.getProgress();
 
@@ -39,8 +39,6 @@ public class PulseExtenderTooltipProvider extends BrassDiodeTooltipProvider
 		var builder = new InsightsBuilder();
 		builder.add(timeDisplay);
 		builder.indentInto(tooltip);
-
-		return true;
 	}
 
 	/**

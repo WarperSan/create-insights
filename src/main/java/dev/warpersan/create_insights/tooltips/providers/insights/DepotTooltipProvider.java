@@ -16,23 +16,23 @@ import java.util.List;
 public class DepotTooltipProvider extends InsightsTooltipProvider
 {
 	@Override
-	protected boolean onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected void onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
 	{
 		var depot = context.getBlockEntity(DepotBlockEntity.class);
 
 		if (depot == null)
-			return true;
+			return;
 
 		var behavior = depot.getBehaviour(DepotBehaviour.TYPE);
 
 		if (behavior == null)
-			return true;
+			return;
 
 		var itemListBuilder = new ItemListBuilder()
 				.addItemHandler(behavior.itemHandler);
 
 		if (!itemListBuilder.hasStack())
-			return true;
+			return;
 
 		var headerBuilder = new InsightsBuilder()
 				.translate("tooltip.content")
@@ -48,7 +48,5 @@ public class DepotTooltipProvider extends InsightsTooltipProvider
 
 			builder.indentInto(tooltip);
 		}
-
-		return true;
 	}
 }

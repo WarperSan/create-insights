@@ -20,19 +20,19 @@ import java.util.List;
 public class MillstoneTooltipProvider extends InsightsTooltipProvider
 {
 	@Override
-	protected boolean onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected void onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
 	{
 		var millstone = context.getBlockEntity(MillstoneBlockEntity.class);
 
 		if (millstone == null)
-			return true;
+			return;
 
 		var recipe = getMillingRecipe(millstone);
 
 		if (recipe == null)
 		{
 			CreateInsights.LOGGER.debug("Failed to get the recipe of the millstone.");
-			return true;
+			return;
 		}
 
 		var total = recipe.getProcessingDuration();
@@ -58,8 +58,6 @@ public class MillstoneTooltipProvider extends InsightsTooltipProvider
 
 		builder.addTo(tooltip);
 		tooltip.add(bar);
-
-		return true;
 	}
 
 	@Nullable

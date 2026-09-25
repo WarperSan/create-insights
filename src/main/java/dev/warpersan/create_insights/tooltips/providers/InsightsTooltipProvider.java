@@ -51,5 +51,5 @@ public abstract class InsightsTooltipProvider implements ITooltipProvider
 		context.addAll(tooltip);
 	}
 
-	protected abstract boolean onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip);
+	protected abstract void onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip);
 }

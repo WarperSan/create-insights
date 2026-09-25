@@ -16,15 +16,15 @@ import java.util.List;
 public class PulseRepeaterTooltipProvider extends BrassDiodeTooltipProvider
 {
 	@Override
-	protected boolean onProvide(BrassDiodeBlockEntity blockEntity, GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected void onProvide(BrassDiodeBlockEntity blockEntity, GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
 	{
 		if (!(blockEntity instanceof PulseRepeaterBlockEntity pulseRepeater))
-			return true;
+			return;
 
 		var time = getMaxTime(pulseRepeater);
 
 		if (time == null)
-			return true;
+			return;
 
 		var percent = 1 - pulseRepeater.getProgress();
 
@@ -39,7 +39,6 @@ public class PulseRepeaterTooltipProvider extends BrassDiodeTooltipProvider
 		var builder = new InsightsBuilder();
 		builder.add(timeDisplay);
 		builder.indentInto(tooltip);
-		return true;
 	}
 
 	/**

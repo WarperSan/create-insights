@@ -22,26 +22,26 @@ import java.util.List;
 public class CrushingWheelTooltipProvider extends InsightsTooltipProvider
 {
 	@Override
-	protected boolean onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected void onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
 	{
 		var crushingWheel = context.getBlockEntity(CrushingWheelBlockEntity.class);
 
 		if (crushingWheel == null)
-			return true;
+			return;
 
 		var controller = StructureFinder.getCrushingWheelController(crushingWheel);
 
 		if (controller == null)
-			return true;
+			return;
 
 		if (!controller.isOccupied())
-			return true;
+			return;
 
 		var recipe = getCrushingRecipe(controller);
 
 		if (recipe == null) {
 			CreateInsights.LOGGER.debug("Failed to get the recipe of the crushing wheel.");
-			return true;
+			return;
 		}
 
 		var total = recipe.getProcessingDuration() - 20;
@@ -66,8 +66,6 @@ public class CrushingWheelTooltipProvider extends InsightsTooltipProvider
 
 		builder.addTo(tooltip);
 		tooltip.add(bar);
-
-		return true;
 	}
 
 	@Nullable
