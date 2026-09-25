@@ -18,5 +18,7 @@
 	"create_insights.tooltip.timing.wait": "Awaiting pulse",
 	"create_insights.tooltip.timing.disabled": "Disabled while powered",
 	"create_insights.tooltip.timing.pulse": "Pulse in",
-	"create_insights.tooltip.timing.stop": "Stop in"
+	"create_insights.tooltip.timing.stop": "Stop in",
+
+	"create_insights.tooltip.content": "Content:"
 }
