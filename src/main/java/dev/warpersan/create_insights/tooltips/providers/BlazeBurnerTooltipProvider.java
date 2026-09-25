@@ -9,7 +9,6 @@ import dev.warpersan.create_insights.tooltips.builders.TimeBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
-import java.awt.*;
 import java.util.List;
 
 /**
@@ -129,17 +128,6 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 				.addScale(TimeBuilder.TimeScale.SECONDS)
 				.forTicks(ticks);
 
-		var time = timeBuilder.getTime();
-
-		if (time.isBlank())
-		{
-			var noneBuilder = new InsightsBuilder();
-
-			noneBuilder.translate("tooltip.heating.none");
-
-			return noneBuilder.component();
-		}
-
-		return Component.literal(time);
+		return timeBuilder.component();
 	}
 }

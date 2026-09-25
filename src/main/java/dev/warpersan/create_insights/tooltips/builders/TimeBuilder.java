@@ -1,6 +1,8 @@
 package dev.warpersan.create_insights.tooltips.builders;
 
 import net.minecraft.SharedConstants;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -51,7 +53,7 @@ public class TimeBuilder
 	/**
 	 * Gets the display time of the given amount using the given scale
 	 */
-	private static String getTime(int totalTicks, EnumSet<TimeScale> scale)
+	private static String display(int totalTicks, EnumSet<TimeScale> scale)
 	{
 		var parts = new ArrayList<String>();
 
@@ -108,10 +110,12 @@ public class TimeBuilder
 	}
 
 	/**
-	 * Gets the display time of the builder
+	 * Creates a component with the gathered information
 	 */
-	public String getTime()
+	public MutableComponent component()
 	{
-		return getTime(this.tickAmount, this.scale);
+		var text = display(this.tickAmount, this.scale);
+
+		return Component.literal(text);
 	}
 }
