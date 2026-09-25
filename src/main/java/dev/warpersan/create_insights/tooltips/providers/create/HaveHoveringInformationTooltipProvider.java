@@ -13,22 +13,20 @@ import java.util.ArrayList;
 public class HaveHoveringInformationTooltipProvider implements ITooltipProvider
 {
 	@Override
-	public boolean provide(GoggleTooltipCollector.TooltipContext context)
+	public void provide(GoggleTooltipCollector.TooltipContext context)
 	{
 		if (!context.isWearingGoggles())
-			return true;
+			return;
 
 		var blockEntity = context.getBlockEntity(IHaveHoveringInformation.class);
 
 		if (blockEntity == null)
-			return true;
+			return;
 
 		var tooltip = new ArrayList<Component>();
 
 		blockEntity.addToTooltip(tooltip, context.player().isCrouching());
 
 		context.addAll(tooltip);
-
-		return true;
 	}
 }

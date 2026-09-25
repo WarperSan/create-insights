@@ -132,12 +132,7 @@ public final class GoggleTooltipCollector
 		var context = new TooltipContext(level, player, pos);
 
 		for (var provider : Providers)
-		{
-			var shouldContinue = provider.provide(context);
-
-			if (!shouldContinue)
-				break;
-		}
+			provider.provide(context);
 
 		return context.compile();
 	}

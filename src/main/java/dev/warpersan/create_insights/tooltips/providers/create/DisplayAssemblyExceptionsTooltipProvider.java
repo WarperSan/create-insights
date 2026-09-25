@@ -13,21 +13,20 @@ import java.util.ArrayList;
 public class DisplayAssemblyExceptionsTooltipProvider implements ITooltipProvider
 {
 	@Override
-	public boolean provide(GoggleTooltipCollector.TooltipContext context)
+	public void provide(GoggleTooltipCollector.TooltipContext context)
 	{
 		if (!context.isWearingGoggles())
-			return true;
+			return;
 
 		var displayAssembly = context.getBlockEntity(IDisplayAssemblyExceptions.class);
 
 		if (displayAssembly == null)
-			return true;
+			return;
 
 		var tooltip = new ArrayList<Component>();
 
 		displayAssembly.addExceptionToTooltip(tooltip);
 
 		context.addAll(tooltip);
-		return true;
 	}
 }

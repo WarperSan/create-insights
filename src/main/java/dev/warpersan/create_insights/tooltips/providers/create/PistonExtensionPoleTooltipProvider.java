@@ -22,24 +22,24 @@ import java.util.ArrayList;
 public class PistonExtensionPoleTooltipProvider implements ITooltipProvider
 {
 	@Override
-	public boolean provide(GoggleTooltipCollector.TooltipContext context)
+	public void provide(GoggleTooltipCollector.TooltipContext context)
 	{
 		if (!context.isWearingGoggles())
-			return true;
+			return;
 
 		var level = context.level();
 		var pos = context.pos();
 		var state = level.getBlockState(pos);
 
 		if (!AllBlocks.PISTON_EXTENSION_POLE.has(state))
-			return true;
+			return;
 
 		var axis = state.getValue(PistonExtensionPoleBlock.FACING).getAxis();
 
 		var poleCount = getPoleCount(level, pos, axis);
 
 		if (poleCount == null)
-			return true;
+			return;
 
 		if (context.hasTooltip())
 			context.add(CommonComponents.EMPTY);
@@ -51,8 +51,6 @@ public class PistonExtensionPoleTooltipProvider implements ITooltipProvider
 				.forGoggles(tooltip);
 
 		context.addAll(tooltip);
-
-		return true;
 	}
 
 	/**
