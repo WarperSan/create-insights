@@ -1,4 +1,4 @@
-package dev.warpersan.create_insights.tooltips.providers;
+package dev.warpersan.create_insights.tooltips.providers.create;
 
 import com.simibubi.create.content.contraptions.IDisplayAssemblyExceptions;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
@@ -8,7 +8,7 @@ import net.minecraft.network.chat.Component;
 import java.util.ArrayList;
 
 /**
- * Provider responsible to display the assembly exceptions
+ * Provider responsible to handle {@link IDisplayAssemblyExceptions}
  */
 public class DisplayAssemblyExceptionsTooltipProvider implements ITooltipProvider
 {
