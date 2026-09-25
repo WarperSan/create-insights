@@ -62,6 +62,7 @@ public final class GoggleTooltipCollector
 		/**
 		 * Defines if the player is wearing goggles
 		 */
+		@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 		public boolean isWearingGoggles()
 		{
 			return GogglesItem.isWearingGoggles(player);
