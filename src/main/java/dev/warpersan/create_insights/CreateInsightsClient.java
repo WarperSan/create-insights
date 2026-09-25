@@ -33,6 +33,7 @@ public class CreateInsightsClient
 		GoggleTooltipCollector.addProvider(new MillstoneTooltipProvider());
 		GoggleTooltipCollector.addProvider(new EncasedFanTooltipProvider());
 		GoggleTooltipCollector.addProvider(new CrushingWheelTooltipProvider());
+		GoggleTooltipCollector.addProvider(new DepotTooltipProvider());
 		GoggleTooltipCollector.addProvider(new PistonExtensionPoleTooltipProvider());
 		GoggleTooltipCollector.addProvider(new DisplayAssemblyExceptionsTooltipProvider());
 		GoggleTooltipCollector.addProvider(new HaveHoveringInformationTooltipProvider());

@@ -67,7 +67,7 @@ public class PulseExtenderTooltipProvider extends BrassDiodeTooltipProvider
 				.addScale(TimeBuilder.TimeScale.TICKS)
 				.forTicks(currentTicks);
 
-		var time = timeBuilder.getTime();
+		var time = timeBuilder.component().withStyle(ChatFormatting.DARK_AQUA);
 
 		var builder = new InsightsBuilder();
 
@@ -76,7 +76,7 @@ public class PulseExtenderTooltipProvider extends BrassDiodeTooltipProvider
 
 		builder.text(" ");
 
-		builder.text(ChatFormatting.DARK_AQUA, time);
+		builder.add(time);
 
 		return builder.component();
 	}
