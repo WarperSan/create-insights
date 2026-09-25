@@ -15,43 +15,41 @@ import java.util.List;
 public abstract class InsightsTooltipProvider implements ITooltipProvider
 {
 	@Override
-	public boolean provide(GoggleTooltipCollector.TooltipContext context)
+	public void provide(GoggleTooltipCollector.TooltipContext context)
 	{
 		// Skip if not wearing goggles
-		if (!context.isWearingGoggles()) return true;
+		if (!context.isWearingGoggles()) return;
 
 		var childTooltip = new ArrayList<Component>();
 
-		var shouldContinue = onProvide(context, childTooltip);
+		onProvide(context, childTooltip);
 
-		if (!childTooltip.isEmpty())
+		if (childTooltip.isEmpty())
+			return;
+
+		var tooltip = new ArrayList<Component>();
+
+		if (context.hasTooltip()) tooltip.add(CommonComponents.EMPTY);
+
+		var headerBuilder = new InsightsBuilder().translate("gui.goggles.insights_stats");
+
+		headerBuilder.forGoggles(tooltip);
+
+		for (var component : childTooltip)
 		{
-			var tooltip = new ArrayList<Component>();
-
-			if (context.hasTooltip()) tooltip.add(CommonComponents.EMPTY);
-
-			var headerBuilder = new InsightsBuilder().translate("gui.goggles.insights_stats");
-
-			headerBuilder.forGoggles(tooltip);
-
-			for (var component : childTooltip)
+			if (component == CommonComponents.EMPTY)
 			{
-				if (component == CommonComponents.EMPTY)
-				{
-					tooltip.add(component);
-					continue;
-				}
-
-				var subBuilder = new InsightsBuilder().add(component);
-
-				subBuilder.forGoggles(tooltip);
+				tooltip.add(component);
+				continue;
 			}
 
-			context.addAll(tooltip);
+			var subBuilder = new InsightsBuilder().add(component);
+
+			subBuilder.forGoggles(tooltip);
 		}
 
-		return shouldContinue;
+		context.addAll(tooltip);
 	}
 
-	protected abstract boolean onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip);
+	protected abstract void onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip);
 }

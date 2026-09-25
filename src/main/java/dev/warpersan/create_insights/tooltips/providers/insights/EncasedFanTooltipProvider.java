@@ -1,8 +1,9 @@
-package dev.warpersan.create_insights.tooltips.providers;
+package dev.warpersan.create_insights.tooltips.providers.insights;
 
 import com.simibubi.create.content.kinetics.fan.EncasedFanBlockEntity;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
+import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
@@ -14,12 +15,12 @@ import java.util.List;
 public class EncasedFanTooltipProvider extends InsightsTooltipProvider
 {
 	@Override
-	protected boolean onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected void onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
 	{
 		var encasedFan = context.getBlockEntity(EncasedFanBlockEntity.class);
 
 		if (encasedFan == null)
-			return true;
+			return;
 
 		var maxDistance = encasedFan.airCurrent.maxDistance;
 		
@@ -41,7 +42,5 @@ public class EncasedFanTooltipProvider extends InsightsTooltipProvider
 		builder.text(" blocks");
 
 		builder.indentInto(tooltip);
-
-		return true;
 	}
 }

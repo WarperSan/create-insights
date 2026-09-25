@@ -62,6 +62,7 @@ public final class GoggleTooltipCollector
 		/**
 		 * Defines if the player is wearing goggles
 		 */
+		@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 		public boolean isWearingGoggles()
 		{
 			return GogglesItem.isWearingGoggles(player);
@@ -131,12 +132,7 @@ public final class GoggleTooltipCollector
 		var context = new TooltipContext(level, player, pos);
 
 		for (var provider : Providers)
-		{
-			var shouldContinue = provider.provide(context);
-
-			if (!shouldContinue)
-				break;
-		}
+			provider.provide(context);
 
 		return context.compile();
 	}

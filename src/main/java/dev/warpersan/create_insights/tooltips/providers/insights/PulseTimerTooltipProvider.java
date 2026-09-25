@@ -1,4 +1,4 @@
-package dev.warpersan.create_insights.tooltips.providers;
+package dev.warpersan.create_insights.tooltips.providers.insights;
 
 import com.simibubi.create.content.redstone.diodes.BrassDiodeBlockEntity;
 import com.simibubi.create.content.redstone.diodes.PulseTimerBlockEntity;
@@ -17,15 +17,15 @@ import java.util.List;
 public class PulseTimerTooltipProvider extends BrassDiodeTooltipProvider
 {
 	@Override
-	protected boolean onProvide(BrassDiodeBlockEntity blockEntity, GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected void onProvide(BrassDiodeBlockEntity blockEntity, GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
 	{
 		if (!(blockEntity instanceof PulseTimerBlockEntity pulseTimer))
-			return true;
+			return;
 
 		var time = getMaxTime(pulseTimer);
 
 		if (time == null)
-			return true;
+			return;
 
 		var percent = 1 - pulseTimer.getProgress();
 
@@ -51,8 +51,6 @@ public class PulseTimerTooltipProvider extends BrassDiodeTooltipProvider
 			builder.add(timeDisplay);
 			builder.indentInto(tooltip);
 		}
-
-		return true;
 	}
 
 	/**

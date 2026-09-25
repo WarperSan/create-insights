@@ -7,7 +7,6 @@ public interface ITooltipProvider
 {
 	/**
 	 * Provides the tooltips depending on the given context
-	 * @return defines if the collector should keep collecting or not
 	 */
-	boolean provide(GoggleTooltipCollector.TooltipContext context);
+	void provide(GoggleTooltipCollector.TooltipContext context);
 }

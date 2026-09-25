@@ -2,7 +2,11 @@ package dev.warpersan.create_insights;
 
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.network.ClientDataCache;
-import dev.warpersan.create_insights.tooltips.providers.*;
+import dev.warpersan.create_insights.tooltips.providers.create.DisplayAssemblyExceptionsTooltipProvider;
+import dev.warpersan.create_insights.tooltips.providers.create.HaveGoggleInformationTooltipProvider;
+import dev.warpersan.create_insights.tooltips.providers.create.HaveHoveringInformationTooltipProvider;
+import dev.warpersan.create_insights.tooltips.providers.create.PistonExtensionPoleTooltipProvider;
+import dev.warpersan.create_insights.tooltips.providers.insights.*;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -25,25 +29,28 @@ public class CreateInsightsClient
 	@SubscribeEvent
 	private static void onClientSetup(FMLClientSetupEvent event)
 	{
+		// Create
 		GoggleTooltipCollector.addProvider(new HaveGoggleInformationTooltipProvider());
+		GoggleTooltipCollector.addProvider(new HaveHoveringInformationTooltipProvider());
+		GoggleTooltipCollector.addProvider(new DisplayAssemblyExceptionsTooltipProvider());
+		GoggleTooltipCollector.addProvider(new PistonExtensionPoleTooltipProvider());
+
+		// Custom
 		GoggleTooltipCollector.addProvider(new BlazeBurnerTooltipProvider());
-		GoggleTooltipCollector.addProvider(new PulseRepeaterTooltipProvider());
-		GoggleTooltipCollector.addProvider(new PulseTimerTooltipProvider());
-		GoggleTooltipCollector.addProvider(new PulseExtenderTooltipProvider());
-		GoggleTooltipCollector.addProvider(new MillstoneTooltipProvider());
-		GoggleTooltipCollector.addProvider(new EncasedFanTooltipProvider());
 		GoggleTooltipCollector.addProvider(new CrushingWheelTooltipProvider());
 		GoggleTooltipCollector.addProvider(new DepotTooltipProvider());
-		GoggleTooltipCollector.addProvider(new PistonExtensionPoleTooltipProvider());
-		GoggleTooltipCollector.addProvider(new DisplayAssemblyExceptionsTooltipProvider());
-		GoggleTooltipCollector.addProvider(new HaveHoveringInformationTooltipProvider());
+		GoggleTooltipCollector.addProvider(new EncasedFanTooltipProvider());
+		GoggleTooltipCollector.addProvider(new MillstoneTooltipProvider());
+		GoggleTooltipCollector.addProvider(new PulseExtenderTooltipProvider());
+		GoggleTooltipCollector.addProvider(new PulseTimerTooltipProvider());
+		GoggleTooltipCollector.addProvider(new PulseRepeaterTooltipProvider());
 	}
 
 	@SubscribeEvent
 	private static void onLeave(ClientPlayerNetworkEvent.LoggingOut event)
 	{
 		var player = event.getPlayer();
-		
+
 		if (player == null)
 			return;
 

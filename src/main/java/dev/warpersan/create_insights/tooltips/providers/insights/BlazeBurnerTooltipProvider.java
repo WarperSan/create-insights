@@ -1,4 +1,4 @@
-package dev.warpersan.create_insights.tooltips.providers;
+package dev.warpersan.create_insights.tooltips.providers.insights;
 
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlockEntity;
@@ -6,6 +6,7 @@ import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.network.ClientDataCache;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.builders.TimeBuilder;
+import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
@@ -17,12 +18,12 @@ import java.util.List;
 public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 {
 	@Override
-	protected boolean onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected void onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
 	{
 		var blazeBurner = context.getBlockEntity(BlazeBurnerBlockEntity.class);
 
 		if (blazeBurner == null)
-			return true;
+			return;
 
 		var remainingBurnTime = ClientDataCache.getOrRequest(
 				blazeBurner,
@@ -31,7 +32,7 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 		);
 
 		if (remainingBurnTime == null)
-			return true;
+			return;
 
 		var time = Integer.parseInt(remainingBurnTime);
 		var fuelType = blazeBurner.getActiveFuel();
@@ -56,8 +57,6 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 		builder.text(" ");
 		builder.add(timeDisplay);
 		builder.indentInto(tooltip);
-
-		return true;
 	}
 
 	/**
