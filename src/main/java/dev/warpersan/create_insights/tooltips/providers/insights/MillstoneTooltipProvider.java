@@ -6,8 +6,8 @@ import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity;
 import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.recipes.RecipeFinder;
-import dev.warpersan.create_insights.tooltips.ProgressBarTooltip;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
+import dev.warpersan.create_insights.tooltips.builders.ProgressBarBuilder;
 import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
 import net.minecraft.network.chat.Component;
 
@@ -50,14 +50,17 @@ public class MillstoneTooltipProvider extends InsightsTooltipProvider
 
 		var percent = Math.clamp((double) current / total, 0.0, 1.0);
 
-		var bar = ProgressBarTooltip.getColoredBar(8, percent);
+		var barBuilder = new ProgressBarBuilder()
+				.ofLength(8)
+				.withPrecision(0)
+				.forPercentage(percent);
 
 		var builder = new InsightsBuilder()
 				.translate("tooltip.progress")
 				.header();
 
 		builder.addTo(tooltip);
-		tooltip.add(bar);
+		tooltip.add(barBuilder.component());
 	}
 
 	@Nullable
