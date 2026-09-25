@@ -1,4 +1,4 @@
-package dev.warpersan.create_insights.tooltips.providers;
+package dev.warpersan.create_insights.tooltips.providers.insights;
 
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlockEntity;
@@ -6,6 +6,7 @@ import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.network.ClientDataCache;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.builders.TimeBuilder;
+import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 

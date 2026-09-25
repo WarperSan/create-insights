@@ -1,8 +1,9 @@
-package dev.warpersan.create_insights.tooltips.providers;
+package dev.warpersan.create_insights.tooltips.providers.insights;
 
 import com.simibubi.create.content.redstone.diodes.BrassDiodeBlockEntity;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.network.ClientDataCache;
+import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
 import net.minecraft.network.chat.Component;
 
 import javax.annotation.Nullable;

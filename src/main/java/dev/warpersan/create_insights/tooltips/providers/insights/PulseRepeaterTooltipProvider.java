@@ -1,7 +1,7 @@
-package dev.warpersan.create_insights.tooltips.providers;
+package dev.warpersan.create_insights.tooltips.providers.insights;
 
 import com.simibubi.create.content.redstone.diodes.BrassDiodeBlockEntity;
-import com.simibubi.create.content.redstone.diodes.PulseExtenderBlockEntity;
+import com.simibubi.create.content.redstone.diodes.PulseRepeaterBlockEntity;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.builders.TimeBuilder;
@@ -11,22 +11,22 @@ import net.minecraft.network.chat.Component;
 import java.util.List;
 
 /**
- * Provider responsible to display the time until the end of the pulse for pulse extenders
+ * Provider responsible to display the time until the next pules for pulse repeaters
  */
-public class PulseExtenderTooltipProvider extends BrassDiodeTooltipProvider
+public class PulseRepeaterTooltipProvider extends BrassDiodeTooltipProvider
 {
 	@Override
 	protected boolean onProvide(BrassDiodeBlockEntity blockEntity, GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
 	{
-		if (!(blockEntity instanceof PulseExtenderBlockEntity pulseExtender))
+		if (!(blockEntity instanceof PulseRepeaterBlockEntity pulseRepeater))
 			return true;
 
-		var time = getMaxTime(pulseExtender);
+		var time = getMaxTime(pulseRepeater);
 
 		if (time == null)
 			return true;
 
-		var percent = pulseExtender.getProgress();
+		var percent = 1 - pulseRepeater.getProgress();
 
 		var headerBuilder = new InsightsBuilder()
 				.translate("tooltip.timing")
@@ -39,7 +39,6 @@ public class PulseExtenderTooltipProvider extends BrassDiodeTooltipProvider
 		var builder = new InsightsBuilder();
 		builder.add(timeDisplay);
 		builder.indentInto(tooltip);
-
 		return true;
 	}
 
@@ -48,7 +47,7 @@ public class PulseExtenderTooltipProvider extends BrassDiodeTooltipProvider
 	 */
 	private static Component getTimeDisplay(int ticks, float progress)
 	{
-		if (progress == 0.0)
+		if (progress == 0.0 || progress == 1.0)
 		{
 			var waitBuilder = new InsightsBuilder();
 
@@ -71,7 +70,7 @@ public class PulseExtenderTooltipProvider extends BrassDiodeTooltipProvider
 
 		var builder = new InsightsBuilder();
 
-		builder.translate("tooltip.timing.stop")
+		builder.translate("tooltip.timing.pulse")
 				.style(ChatFormatting.DARK_GRAY);
 
 		builder.text(" ");

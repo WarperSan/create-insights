@@ -1,4 +1,4 @@
-package dev.warpersan.create_insights.tooltips.providers;
+package dev.warpersan.create_insights.tooltips.providers.insights;
 
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelBlockEntity;
 import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlockEntity;
@@ -8,6 +8,7 @@ import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.structures.StructureFinder;
 import dev.warpersan.create_insights.tooltips.ProgressBarTooltip;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
+import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.neoforged.neoforge.items.wrapper.RecipeWrapper;

@@ -1,8 +1,9 @@
-package dev.warpersan.create_insights.tooltips.providers;
+package dev.warpersan.create_insights.tooltips.providers.insights;
 
 import com.simibubi.create.content.kinetics.fan.EncasedFanBlockEntity;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
+import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
