@@ -18,6 +18,7 @@ This mod adds a bunch of tooltips to help players understand their machines bett
 - Time until Next Pulse for **Pulse Repeater**
 - Time until Depleted for **Pulse Extender**
 - Time until Next Pulse for **Pulse Timer**
+- Content of **Depot**
 
 ![Demonstration of Millstone Progress](https://raw.githubusercontent.com/WarperSan/create-insights/refs/heads/main/assets/millstone-progress.png)
 
