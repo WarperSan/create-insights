@@ -16,6 +16,25 @@ public class ReflectionHelper
 	 * Gets the instance value of the given field
 	 */
 	@Nullable
+	public static <T> T getValue(
+			@NotNull Object object,
+			@NotNull Class<?> targetClass,
+			@NotNull String fieldName,
+			@NotNull Class<? extends T> targetClassValue
+	)
+	{
+		var value = getValue(object, targetClass, fieldName);
+
+		if (value == null)
+			return null;
+		
+		return targetClassValue.cast(value);
+	}
+
+	/**
+	 * Gets the instance value of the given field
+	 */
+	@Nullable
 	public static Object getValue(@NotNull Object object, @NotNull Class<?> targetClass, @NotNull String fieldName)
 	{
 		return getValue(object, targetClass.getName(), fieldName);
