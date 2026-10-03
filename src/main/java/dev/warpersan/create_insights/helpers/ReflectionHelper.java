@@ -7,7 +7,9 @@ import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/// Class responsible to offer methods for reflection
+/**
+ * Class responsible to offer functions for reflection
+ */
 public class ReflectionHelper
 {
 	private static final Map<String, Field> FIELD_CACHE = new ConcurrentHashMap<>();

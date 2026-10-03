@@ -5,7 +5,7 @@ import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
 import com.simibubi.create.content.kinetics.millstone.MillstoneBlockEntity;
 import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
-import dev.warpersan.create_insights.recipes.RecipeFinder;
+import dev.warpersan.create_insights.helpers.RecipeHelper;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.builders.ProgressBarBuilder;
 import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
@@ -66,7 +66,7 @@ public class MillstoneTooltipProvider extends InsightsTooltipProvider
 	@Nullable
 	private static MillingRecipe getMillingRecipe(MillstoneBlockEntity millstone)
 	{
-		var recipe = RecipeFinder.getRecipe(
+		var recipe = RecipeHelper.getRecipe(
 				millstone,
 				AllRecipeTypes.MILLING,
 				millstone.inputInv
