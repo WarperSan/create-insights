@@ -44,6 +44,7 @@ public class CreateInsightsClient
 		GoggleTooltipCollector.addProvider(new PulseExtenderTooltipProvider());
 		GoggleTooltipCollector.addProvider(new PulseTimerTooltipProvider());
 		GoggleTooltipCollector.addProvider(new PulseRepeaterTooltipProvider());
+		GoggleTooltipCollector.addProvider(new DeployerTooltipProvider());
 	}
 
 	@SubscribeEvent

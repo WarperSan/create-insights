@@ -20,5 +20,8 @@
 	"create_insights.tooltip.timing.pulse": "Pulse in",
 	"create_insights.tooltip.timing.stop": "Stop in",
 
-	"create_insights.tooltip.content": "Content:"
+	"create_insights.tooltip.content": "Content:",
+
+	"create_insights.tooltip.usage": "Usage:",
+	"create_insights.tooltip.usage.durability": "Durability:"
 }

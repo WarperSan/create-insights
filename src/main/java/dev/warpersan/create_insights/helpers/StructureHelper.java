@@ -1,4 +1,4 @@
-package dev.warpersan.create_insights.structures;
+package dev.warpersan.create_insights.helpers;
 
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.base.RotatedPillarKineticBlock;
@@ -9,9 +9,10 @@ import net.createmod.catnip.data.Iterate;
 import javax.annotation.Nullable;
 
 /**
- * Class responsible to find a given block inside a given structure
+ * Class responsible to offer functions for structures
  */
-public class StructureFinder {
+public class StructureHelper
+{
 
     /**
      * Gets the controller of the given crushing wheel

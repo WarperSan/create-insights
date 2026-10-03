@@ -5,7 +5,7 @@ import com.simibubi.create.content.kinetics.crusher.CrushingWheelControllerBlock
 import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
-import dev.warpersan.create_insights.structures.StructureFinder;
+import dev.warpersan.create_insights.helpers.StructureHelper;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.builders.ProgressBarBuilder;
 import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
@@ -29,7 +29,7 @@ public class CrushingWheelTooltipProvider extends InsightsTooltipProvider
 		if (crushingWheel == null)
 			return;
 
-		var controller = StructureFinder.getCrushingWheelController(crushingWheel);
+		var controller = StructureHelper.getCrushingWheelController(crushingWheel);
 
 		if (controller == null)
 			return;

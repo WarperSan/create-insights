@@ -1,4 +1,4 @@
-package dev.warpersan.create_insights.recipes;
+package dev.warpersan.create_insights.helpers;
 
 import com.simibubi.create.AllRecipeTypes;
 import net.minecraft.world.item.crafting.Recipe;
@@ -14,9 +14,10 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 
 /**
- * Class responsible to find recipes
+ * Class responsible to offer functions for recipes
  */
-public class RecipeFinder {
+public class RecipeHelper
+{
 
     /**
      * Gets the recipe of the given inventory
