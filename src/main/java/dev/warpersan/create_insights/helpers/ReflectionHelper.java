@@ -16,6 +16,15 @@ public class ReflectionHelper
 	 * Gets the instance value of the given field
 	 */
 	@Nullable
+	public static Object getValue(@NotNull Object object, @NotNull Class<?> targetClass, @NotNull String fieldName)
+	{
+		return getValue(object, targetClass.getName(), fieldName);
+	}
+
+	/**
+	 * Gets the instance value of the given field
+	 */
+	@Nullable
 	public static Object getValue(@NotNull Object object, @NotNull String className, @NotNull String fieldName)
 	{
 		var parts = fieldName.split("\\.", 2);
