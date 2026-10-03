@@ -44,11 +44,12 @@ public class DeployerTooltipProvider extends InsightsTooltipProvider
 		if (maxDamage == null)
 			return;
 
-		//noinspection OptionalAssignedToNull
-		if (currentDamage == null || currentDamage.isEmpty())
-			return;
-		
-		var remainingDurability = maxDamage - currentDamage.get();
+		var currentDamageValue = 0;
+
+		if (currentDamage != null && currentDamage.isPresent())
+			currentDamageValue = currentDamage.get();
+
+		var remainingDurability = maxDamage - currentDamageValue;
 
 		var headerBuilder = new InsightsBuilder()
 				.translate("tooltip.usage")
