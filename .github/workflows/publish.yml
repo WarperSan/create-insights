@@ -14,8 +14,9 @@ jobs:
         
       - name: Validate Version
         run: |
+          TAG="${github.event.release.tag_name}"
           SET_VERSION="$(grep '^mod_version=' gradle.properties | cut -d'=' -f2)"
-          EXPECTED_VERSION="${github.event.release.tag_name#v}"
+          EXPECTED_VERSION="${TAG#v}"
           
           if [[ "$SET_VERSION" == "$EXPECTED_VERSION" ]]; then
             echo "Inline version is correct."
