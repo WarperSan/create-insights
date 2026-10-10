@@ -4,7 +4,10 @@
 
 # Create: Insights
 
-A Create mod add-on adding more information to the Goggles's overlay.
+[![CurseForge](https://img.shields.io/curseforge/dt/1737107?logo=curseforge&label=&suffix=%20&style=flat&color=242629&labelColor=e04e14&logoColor=1c1c1c)](https://www.curseforge.com/minecraft/mc-mods/create-insights)
+[![Modrinth](https://img.shields.io/modrinth/dt/create-insights?logo=modrinth&label=&suffix=%20&style=flat&color=242629&labelColor=5ca424&logoColor=1c1c1c)](https://modrinth.com/mod/create-insights)
+
+A [Create](https://github.com/Creators-of-Create/Create) mod add-on adding more information to the Goggles's overlay.
 
 ![Demonstration of Blaze Burner Heating](https://raw.githubusercontent.com/WarperSan/create-insights/refs/heads/main/assets/blaze-burner-heating.png)
 
