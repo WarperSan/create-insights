@@ -29,17 +29,17 @@ jobs:
         run: ./gradlew build
 
       - name: Get Modrinth ID
-        id: modrinth_id
+        id: modrinth
         run: echo "id=$(grep '^modrinth_id=' gradle.properties | cut -d'=' -f2)" >> $GITHUB_OUTPUT
 
       - name: Get CurseForge ID
-        id: curseforge_id
+        id: curseforge
         run: echo "id=$(grep '^curseforge_id=' gradle.properties | cut -d'=' -f2)" >> $GITHUB_OUTPUT
 
       - uses: Kira-NT/mc-publish@v3
         with:
-          modrinth-id: ${{ steps.modrinth_id.outputs.id }}
+          modrinth-id: ${{ steps.modrinth.outputs.id }}
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
-          curseforge-id: ${{ steps.curseforge_id.outputs.id }}
+          curseforge-id: ${{ steps.curseforge.outputs.id }}
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
