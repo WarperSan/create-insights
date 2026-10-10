@@ -11,6 +11,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        
+      - name: Validate Version
+        run: |
+          SET_VERSION="$(grep '^mod_version=' gradle.properties | cut -d'=' -f2)"
+          EXPECTED_VERSION="${github.event.release.tag_name#v}"
+          
+          if [[ "$SET_VERSION" == "$EXPECTED_VERSION" ]]; then
+            echo "Inline version is correct."
+          else
+            echo "Version found ($SET_VERSION) is different than the tag version ($EXPECTED_VERSION)."
+            exit 1
+          fi
 
       - name: Get Java Version
         id: java_version
