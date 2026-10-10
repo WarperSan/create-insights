@@ -14,7 +14,7 @@ jobs:
         
       - name: Validate Version
         run: |
-          TAG="${github.event.release.tag_name}"
+          TAG=${{ github.event.release.tag_name }}
           SET_VERSION="$(grep '^mod_version=' gradle.properties | cut -d'=' -f2)"
           EXPECTED_VERSION="${TAG#v}"
           
