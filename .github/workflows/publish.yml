@@ -1,0 +1,57 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        
+      - name: Validate Version
+        run: |
+          SET_VERSION="$(grep '^mod_version=' gradle.properties | cut -d'=' -f2)"
+          EXPECTED_VERSION="${github.event.release.tag_name#v}"
+          
+          if [[ "$SET_VERSION" == "$EXPECTED_VERSION" ]]; then
+            echo "Inline version is correct."
+          else
+            echo "Version found ($SET_VERSION) is different than the tag version ($EXPECTED_VERSION)."
+            exit 1
+          fi
+
+      - name: Get Java Version
+        id: java_version
+        run: echo "version=$(grep '^javaVersion=' gradle.properties | cut -d'=' -f2)" >> $GITHUB_OUTPUT
+
+      - name: Setup JDK
+        uses: actions/setup-java@v6
+        with:
+          java-version: ${{ steps.java_version.outputs.version }}
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Get Modrinth ID
+        id: modrinth
+        run: echo "id=$(grep '^modrinth_id=' gradle.properties | cut -d'=' -f2)" >> $GITHUB_OUTPUT
+
+      - name: Get CurseForge ID
+        id: curseforge
+        run: echo "id=$(grep '^curseforge_id=' gradle.properties | cut -d'=' -f2)" >> $GITHUB_OUTPUT
+
+      - uses: Kira-NT/mc-publish@v3
+        with:
+          modrinth-id: ${{ steps.modrinth.outputs.id }}
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          curseforge-id: ${{ steps.curseforge.outputs.id }}
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
