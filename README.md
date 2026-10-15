@@ -37,8 +37,6 @@ However, if your mod uses `IHaveGoggleInformation`, the tooltip will also work h
 Contributions are welcome! If you encounter a bug or have a feature request, please [open an issue](https://github.com/WarperSan/create-insights/issues/new).
 
 <div align="center">
-    <sub>
-        <hr>
-		Made with ❤️ for the modding community
-    </sub>
+	<hr>
+	Made with ❤️ for the modding community
 </div>
