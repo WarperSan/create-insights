@@ -3,6 +3,8 @@ package dev.warpersan.create_insights.api.registries;
 import com.simibubi.create.Create;
 import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.api.interfaces.ITooltipCategory;
+import dev.warpersan.create_insights.tooltips.categories.CreateTooltipCategory;
+import dev.warpersan.create_insights.tooltips.categories.InsightsTooltipCategory;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -17,7 +19,7 @@ public class TooltipCategoryRegistry
 	private static final ResourceKey<Registry<ITooltipCategory>> REGISTRY_KEY = ResourceKey.createRegistryKey(
 			ResourceLocation.fromNamespaceAndPath(
 					CreateInsights.MOD_ID,
-					"tooltip/category"
+					"tooltip_category"
 			)
 	);
 
@@ -25,11 +27,11 @@ public class TooltipCategoryRegistry
 	public static final Registry<ITooltipCategory> REGISTRY = new RegistryBuilder<>(REGISTRY_KEY).create();
 
 	/// Registry containing all categories added by this mod
-	private static final DeferredRegister<ITooltipCategory> CATEGORIES = DeferredRegister.create(REGISTRY, CreateInsights.MOD_ID);
+	public static final DeferredRegister<ITooltipCategory> CATEGORIES = DeferredRegister.create(REGISTRY, CreateInsights.MOD_ID);
 
 	/// Category used for tooltips from Create
-	public static final Supplier<ITooltipCategory> CREATE = CATEGORIES.register(Create.ID, () -> null);
+	public static final Supplier<ITooltipCategory> CREATE = CATEGORIES.register(Create.ID, CreateTooltipCategory::new);
 
 	/// Category used for tooltips from Create: Insights
-	public static final Supplier<ITooltipCategory> INSIGHTS = CATEGORIES.register(CreateInsights.MOD_ID, () -> null);
+	public static final Supplier<ITooltipCategory> INSIGHTS = CATEGORIES.register(CreateInsights.MOD_ID, InsightsTooltipCategory::new);
 }

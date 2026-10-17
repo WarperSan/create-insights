@@ -1,6 +1,7 @@
 package dev.warpersan.create_insights;
 
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
+import dev.warpersan.create_insights.api.registries.TooltipCategoryRegistry;
 import dev.warpersan.create_insights.api.registries.TooltipProviderRegistry;
 import dev.warpersan.create_insights.network.ClientDataCache;
 import dev.warpersan.create_insights.tooltips.providers.create.DisplayAssemblyExceptionsTooltipProvider;
@@ -28,6 +29,7 @@ public class CreateInsightsClient
 		
 		if (eventBus != null)
 		{
+			TooltipCategoryRegistry.CATEGORIES.register(eventBus);
 			TooltipProviderRegistry.CREATE_PROVIDERS.register(eventBus);
 			TooltipProviderRegistry.INSIGHTS_PROVIDERS.register(eventBus);
 		}

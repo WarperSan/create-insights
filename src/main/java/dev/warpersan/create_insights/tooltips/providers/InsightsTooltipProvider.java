@@ -29,12 +29,6 @@ public abstract class InsightsTooltipProvider implements ITooltipProvider
 
 		var tooltip = new ArrayList<Component>();
 
-		if (context.hasTooltip()) tooltip.add(CommonComponents.EMPTY);
-
-		var headerBuilder = new InsightsBuilder().translate("gui.goggles.insights_stats");
-
-		headerBuilder.forGoggles(tooltip);
-
 		for (var component : childTooltip)
 		{
 			if (component == CommonComponents.EMPTY)

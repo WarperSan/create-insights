@@ -1,21 +1,25 @@
 package dev.warpersan.create_insights.api;
 
 import com.simibubi.create.content.equipment.goggles.GogglesItem;
-import dev.warpersan.create_insights.api.registries.TooltipProviderRegistry;
+import dev.warpersan.create_insights.api.interfaces.ITooltipCategory;
+import dev.warpersan.create_insights.api.registries.TooltipCategoryRegistry;
+import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public final class GoggleTooltipCollector
 {
-	private static final List<ITooltipProvider> Providers = new ArrayList<>();
+	private static final Comparator<ITooltipCategory> CATEGORY_ORDER = Comparator
+			.comparingInt(ITooltipCategory::priority)
+			.thenComparing(TooltipCategoryRegistry.REGISTRY::getId);
+
+	private static final SortedMap<ITooltipCategory, List<ITooltipProvider>> Categories = new TreeMap<>(CATEGORY_ORDER);
 
 	/**
 	 * Class holding information about the creation of tooltips
@@ -123,7 +127,10 @@ public final class GoggleTooltipCollector
 	 */
 	public static void addProvider(ITooltipProvider provider)
 	{
-		Providers.add(provider);
+		if (provider instanceof InsightsTooltipProvider)
+			Categories.computeIfAbsent(TooltipCategoryRegistry.INSIGHTS.get(), c -> new ArrayList<>()).add(provider);
+		else
+			Categories.computeIfAbsent(TooltipCategoryRegistry.CREATE.get(), c -> new ArrayList<>()).add(provider);
 	}
 
 	/**
@@ -131,17 +138,40 @@ public final class GoggleTooltipCollector
 	 */
 	public static List<Component> collect(Level level, Player player, BlockPos pos)
 	{
-		for (ResourceLocation resourceLocation : TooltipProviderRegistry.TOOLTIP_PROVIDER_REGISTRY.keySet())
+		var components = new ArrayList<Component>();
+
+		for (var entry : Categories.entrySet())
 		{
-			var tooltip = TooltipProviderRegistry.TOOLTIP_PROVIDER_REGISTRY.get(resourceLocation);
-			
-			var c = tooltip;
+			var category = entry.getKey();
+			var providers = entry.getValue();
+			var categoryComponents = new ArrayList<Component>();
+
+			for (var provider : providers)
+			{
+				var context = new TooltipContext(level, player, pos);
+				provider.provide(context);
+				
+				var providerComponents = context.compile();
+				
+				if (providerComponents.isEmpty())
+					continue;
+
+				if (!categoryComponents.isEmpty())
+					categoryComponents.add(CommonComponents.EMPTY);
+
+				categoryComponents.addAll(providerComponents);
+			}
+
+			if (categoryComponents.isEmpty())
+				continue;
+
+			if (!components.isEmpty())
+				components.add(CommonComponents.EMPTY);
+
+			components.addAll(category.header());
+			components.addAll(categoryComponents);
 		}
-		var context = new TooltipContext(level, player, pos);
 
-		for (var provider : Providers)
-			provider.provide(context);
-
-		return context.compile();
+		return components;
 	}
 }

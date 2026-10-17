@@ -2,6 +2,7 @@ package dev.warpersan.create_insights.tooltips.providers.insights;
 
 import com.simibubi.create.content.redstone.diodes.BrassDiodeBlockEntity;
 import com.simibubi.create.content.redstone.diodes.PulseRepeaterBlockEntity;
+import com.simibubi.create.content.redstone.diodes.PulseTimerBlockEntity;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.builders.TimeBuilder;
@@ -18,7 +19,7 @@ public class PulseRepeaterTooltipProvider extends BrassDiodeTooltipProvider
 	@Override
 	protected void onProvide(BrassDiodeBlockEntity blockEntity, GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
 	{
-		if (!(blockEntity instanceof PulseRepeaterBlockEntity pulseRepeater))
+		if (!(blockEntity instanceof PulseTimerBlockEntity pulseRepeater))
 			return;
 
 		var time = getMaxTime(pulseRepeater);
