@@ -5,6 +5,9 @@ on:
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+"
 
+permissions:
+    contents: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -51,9 +54,8 @@ jobs:
 
       - uses: Kira-NT/mc-publish@v3
         with:
-          # Disabled while Modrinth reviews the mod
-          #modrinth-id: ${{ steps.modrinth.outputs.id }}
-          #modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          modrinth-id: ${{ steps.modrinth.outputs.id }}
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
           curseforge-id: ${{ steps.curseforge.outputs.id }}
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
