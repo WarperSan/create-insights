@@ -1,8 +1,10 @@
 package dev.warpersan.create_insights.api;
 
 import com.simibubi.create.content.equipment.goggles.GogglesItem;
+import dev.warpersan.create_insights.api.registries.TooltipProviderRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
@@ -129,6 +131,12 @@ public final class GoggleTooltipCollector
 	 */
 	public static List<Component> collect(Level level, Player player, BlockPos pos)
 	{
+		for (ResourceLocation resourceLocation : TooltipProviderRegistry.TOOLTIP_PROVIDER_REGISTRY.keySet())
+		{
+			var tooltip = TooltipProviderRegistry.TOOLTIP_PROVIDER_REGISTRY.get(resourceLocation);
+			
+			var c = tooltip;
+		}
 		var context = new TooltipContext(level, player, pos);
 
 		for (var provider : Providers)

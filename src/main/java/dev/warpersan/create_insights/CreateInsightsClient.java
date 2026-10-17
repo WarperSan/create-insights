@@ -1,6 +1,7 @@
 package dev.warpersan.create_insights;
 
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
+import dev.warpersan.create_insights.api.registries.TooltipProviderRegistry;
 import dev.warpersan.create_insights.network.ClientDataCache;
 import dev.warpersan.create_insights.tooltips.providers.create.DisplayAssemblyExceptionsTooltipProvider;
 import dev.warpersan.create_insights.tooltips.providers.create.HaveGoggleInformationTooltipProvider;
@@ -23,6 +24,14 @@ public class CreateInsightsClient
 {
 	public CreateInsightsClient(ModContainer container)
 	{
+		var eventBus = container.getEventBus();
+		
+		if (eventBus != null)
+		{
+			TooltipProviderRegistry.CREATE_PROVIDERS.register(eventBus);
+			TooltipProviderRegistry.INSIGHTS_PROVIDERS.register(eventBus);
+		}
+
 		container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
 	}
 
