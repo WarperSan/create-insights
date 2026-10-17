@@ -1,6 +1,7 @@
 package dev.warpersan.create_insights;
 
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
+import dev.warpersan.create_insights.api.registries.TooltipCategoryRegistry;
 import dev.warpersan.create_insights.network.ClientDataCache;
 import dev.warpersan.create_insights.tooltips.providers.create.DisplayAssemblyExceptionsTooltipProvider;
 import dev.warpersan.create_insights.tooltips.providers.create.HaveGoggleInformationTooltipProvider;
@@ -23,6 +24,13 @@ public class CreateInsightsClient
 {
 	public CreateInsightsClient(ModContainer container)
 	{
+		var eventBus = container.getEventBus();
+		
+		if (eventBus != null)
+		{
+			TooltipCategoryRegistry.CATEGORIES.register(eventBus);
+		}
+
 		container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
 	}
 
@@ -30,21 +38,21 @@ public class CreateInsightsClient
 	private static void onClientSetup(FMLClientSetupEvent event)
 	{
 		// Create
-		GoggleTooltipCollector.addProvider(new HaveGoggleInformationTooltipProvider());
-		GoggleTooltipCollector.addProvider(new HaveHoveringInformationTooltipProvider());
-		GoggleTooltipCollector.addProvider(new DisplayAssemblyExceptionsTooltipProvider());
-		GoggleTooltipCollector.addProvider(new PistonExtensionPoleTooltipProvider());
+		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.CREATE, HaveGoggleInformationTooltipProvider::new);
+		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.CREATE, HaveHoveringInformationTooltipProvider::new);
+		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.CREATE, DisplayAssemblyExceptionsTooltipProvider::new);
+		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.CREATE, PistonExtensionPoleTooltipProvider::new);
 
 		// Custom
-		GoggleTooltipCollector.addProvider(new BlazeBurnerTooltipProvider());
-		GoggleTooltipCollector.addProvider(new CrushingWheelTooltipProvider());
-		GoggleTooltipCollector.addProvider(new DepotTooltipProvider());
-		GoggleTooltipCollector.addProvider(new EncasedFanTooltipProvider());
-		GoggleTooltipCollector.addProvider(new MillstoneTooltipProvider());
-		GoggleTooltipCollector.addProvider(new PulseExtenderTooltipProvider());
-		GoggleTooltipCollector.addProvider(new PulseTimerTooltipProvider());
-		GoggleTooltipCollector.addProvider(new PulseRepeaterTooltipProvider());
-		GoggleTooltipCollector.addProvider(new DeployerTooltipProvider());
+		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, BlazeBurnerTooltipProvider::new);
+		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, CrushingWheelTooltipProvider::new);
+		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, DepotTooltipProvider::new);
+		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, EncasedFanTooltipProvider::new);
+		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, MillstoneTooltipProvider::new);
+		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, PulseExtenderTooltipProvider::new);
+		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, PulseTimerTooltipProvider::new);
+		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, PulseRepeaterTooltipProvider::new);
+		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, DeployerTooltipProvider::new);
 	}
 
 	@SubscribeEvent

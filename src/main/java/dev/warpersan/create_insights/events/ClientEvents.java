@@ -1,6 +1,7 @@
 package dev.warpersan.create_insights.events;
 
 import dev.warpersan.create_insights.CreateInsights;
+import dev.warpersan.create_insights.api.registries.TooltipCategoryRegistry;
 import dev.warpersan.create_insights.network.ClientDataCache;
 import dev.warpersan.create_insights.network.ResponseDataPayload;
 import dev.warpersan.create_insights.overlays.goggles.GoggleOverlayRenderer;
@@ -11,6 +12,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.registries.NewRegistryEvent;
 
 /**
  * Class holding events ran on the client side
@@ -38,5 +40,11 @@ public class ClientEvents
 				ResourceLocation.fromNamespaceAndPath(CreateInsights.MOD_ID, "goggle_info"),
 				GoggleOverlayRenderer.OVERLAY
 		);
+	}
+
+	@SubscribeEvent
+	private static void registerRegistries(NewRegistryEvent event)
+	{
+		event.register(TooltipCategoryRegistry.REGISTRY);
 	}
 }

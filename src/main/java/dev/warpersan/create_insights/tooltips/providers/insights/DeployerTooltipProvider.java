@@ -1,7 +1,7 @@
 package dev.warpersan.create_insights.tooltips.providers.insights;
 
 import com.simibubi.create.content.kinetics.deployer.DeployerBlockEntity;
-import dev.warpersan.create_insights.api.GoggleTooltipCollector;
+import dev.warpersan.create_insights.api.TooltipContext;
 import dev.warpersan.create_insights.helpers.ReflectionHelper;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
@@ -18,7 +18,7 @@ import java.util.List;
 public class DeployerTooltipProvider extends InsightsTooltipProvider
 {
 	@Override
-	protected void onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected void onProvide(TooltipContext context, List<Component> tooltip)
 	{
 		var deployer = context.getBlockEntity(DeployerBlockEntity.class);
 

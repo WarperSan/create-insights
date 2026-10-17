@@ -4,17 +4,17 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.contraptions.piston.MechanicalPistonBlock;
 import com.simibubi.create.content.contraptions.piston.PistonExtensionPoleBlock;
 import com.simibubi.create.foundation.utility.CreateLang;
-import dev.warpersan.create_insights.api.GoggleTooltipCollector;
-import dev.warpersan.create_insights.api.ITooltipProvider;
+import dev.warpersan.create_insights.api.TooltipContext;
+import dev.warpersan.create_insights.api.interfaces.ITooltipProvider;
 import net.createmod.catnip.data.Iterate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Provider responsible to display the length of piston extension poles
@@ -22,27 +22,24 @@ import java.util.ArrayList;
 public class PistonExtensionPoleTooltipProvider implements ITooltipProvider
 {
 	@Override
-	public void provide(GoggleTooltipCollector.TooltipContext context)
+	public List<Component> provide(TooltipContext context)
 	{
 		if (!context.isWearingGoggles())
-			return;
+			return List.of();
 
 		var level = context.level();
 		var pos = context.pos();
 		var state = level.getBlockState(pos);
 
 		if (!AllBlocks.PISTON_EXTENSION_POLE.has(state))
-			return;
+			return List.of();
 
 		var axis = state.getValue(PistonExtensionPoleBlock.FACING).getAxis();
 
 		var poleCount = getPoleCount(level, pos, axis);
 
 		if (poleCount == null)
-			return;
-
-		if (context.hasTooltip())
-			context.add(CommonComponents.EMPTY);
+			return List.of();
 
 		var tooltip = new ArrayList<Component>();
 
@@ -50,7 +47,7 @@ public class PistonExtensionPoleTooltipProvider implements ITooltipProvider
 				.text(" " + poleCount)
 				.forGoggles(tooltip);
 
-		context.addAll(tooltip);
+		return tooltip;
 	}
 
 	/**

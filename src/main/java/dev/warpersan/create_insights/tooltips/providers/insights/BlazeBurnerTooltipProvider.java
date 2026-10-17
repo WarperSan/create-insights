@@ -2,7 +2,7 @@ package dev.warpersan.create_insights.tooltips.providers.insights;
 
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlockEntity;
-import dev.warpersan.create_insights.api.GoggleTooltipCollector;
+import dev.warpersan.create_insights.api.TooltipContext;
 import dev.warpersan.create_insights.network.ClientDataCache;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.builders.TimeBuilder;
@@ -18,7 +18,7 @@ import java.util.List;
 public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 {
 	@Override
-	protected void onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected void onProvide(TooltipContext context, List<Component> tooltip)
 	{
 		var blazeBurner = context.getBlockEntity(BlazeBurnerBlockEntity.class);
 

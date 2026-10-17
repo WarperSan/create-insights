@@ -1,139 +1,71 @@
 package dev.warpersan.create_insights.api;
 
-import com.simibubi.create.content.equipment.goggles.GogglesItem;
-import net.minecraft.core.BlockPos;
+import dev.warpersan.create_insights.api.interfaces.ITooltipCategory;
+import dev.warpersan.create_insights.api.interfaces.ITooltipProvider;
+import dev.warpersan.create_insights.api.registries.TooltipCategoryRegistry;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
+import java.util.function.Supplier;
 
 public final class GoggleTooltipCollector
 {
-	private static final List<ITooltipProvider> Providers = new ArrayList<>();
+	private static final Comparator<ITooltipCategory> CATEGORY_ORDER = Comparator
+			.comparingInt(ITooltipCategory::priority)
+			.thenComparing(TooltipCategoryRegistry.REGISTRY::getId);
+
+	private static final SortedMap<ITooltipCategory, List<ITooltipProvider>> Categories = new TreeMap<>(CATEGORY_ORDER);
 
 	/**
-	 * Class holding information about the creation of tooltips
+	 * Adds the given provider into the given category
 	 */
-	public static class TooltipContext
+	public static void addProvider(
+			Supplier<ITooltipCategory> category,
+			Supplier<ITooltipProvider> provider
+	)
 	{
-		private final List<Component> tooltip;
+		var providers = Categories.computeIfAbsent(category.get(), c -> new ArrayList<>());
 
-		private final Level level;
-		private final Player player;
-		private final BlockPos pos;
-
-		private TooltipContext(Level level, Player player, BlockPos pos)
-		{
-			tooltip = new ArrayList<>();
-
-			this.level = level;
-			this.player = player;
-			this.pos = pos;
-		}
-
-		/**
-		 * Gets the level
-		 */
-		public Level level()
-		{
-			return level;
-		}
-
-		/**
-		 * Gets the player
-		 */
-		public Player player()
-		{
-			return player;
-		}
-
-		/**
-		 * Gets the position
-		 */
-		public BlockPos pos()
-		{
-			return pos;
-		}
-
-		/**
-		 * Defines if the player is wearing goggles
-		 */
-		@SuppressWarnings("BooleanMethodIsAlwaysInverted")
-		public boolean isWearingGoggles()
-		{
-			return GogglesItem.isWearingGoggles(player);
-		}
-
-		/**
-		 * Gets the targeted block entity
-		 */
-		@Nullable
-		public <T> T getBlockEntity(Class<T> clazz)
-		{
-			var blockEntity = level.getBlockEntity(pos);
-
-			if (blockEntity == null)
-				return null;
-
-			if (!clazz.isInstance(blockEntity))
-				return null;
-
-			return clazz.cast(blockEntity);
-		}
-
-		/**
-		 * Defines if any tooltip was defined
-		 */
-		public boolean hasTooltip()
-		{
-			return !tooltip.isEmpty();
-		}
-
-		/**
-		 * Adds the given component to the tooltip
-		 */
-		public void add(Component component)
-		{
-			tooltip.add(component);
-		}
-
-		/**
-		 * Adds the given components to the tooltip
-		 */
-		public void addAll(Collection<? extends Component> components)
-		{
-			for (var component : components)
-				add(component);
-		}
-
-		private List<Component> compile()
-		{
-			return new ArrayList<>(tooltip);
-		}
+		providers.add(provider.get());
 	}
 
 	/**
-	 * Adds the given provider
+	 * Collects the tooltips shown for the given context
 	 */
-	public static void addProvider(ITooltipProvider provider)
+	public static List<Component> collect(TooltipContext context)
 	{
-		Providers.add(provider);
-	}
+		var components = new ArrayList<Component>();
 
-	/**
-	 * Collects the tooltips shown at the given position
-	 */
-	public static List<Component> collect(Level level, Player player, BlockPos pos)
-	{
-		var context = new TooltipContext(level, player, pos);
+		for (var entry : Categories.entrySet())
+		{
+			var category = entry.getKey();
+			var providers = entry.getValue();
+			var categoryComponents = new ArrayList<Component>();
 
-		for (var provider : Providers)
-			provider.provide(context);
+			for (var provider : providers)
+			{
+				var providerComponents = provider.provide(context);
 
-		return context.compile();
+				if (providerComponents.isEmpty())
+					continue;
+
+				if (!categoryComponents.isEmpty())
+					categoryComponents.add(CommonComponents.EMPTY);
+
+				categoryComponents.addAll(providerComponents);
+			}
+
+			if (categoryComponents.isEmpty())
+				continue;
+
+			if (!components.isEmpty())
+				components.add(CommonComponents.EMPTY);
+
+			components.addAll(category.header());
+			components.addAll(categoryComponents);
+		}
+
+		return components;
 	}
 }
