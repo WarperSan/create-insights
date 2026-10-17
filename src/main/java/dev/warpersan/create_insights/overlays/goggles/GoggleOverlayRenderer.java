@@ -3,6 +3,7 @@ package dev.warpersan.create_insights.overlays.goggles;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueBox;
 import dev.warpersan.create_insights.api.GoggleTooltipCollector;
+import dev.warpersan.create_insights.api.TooltipContext;
 import net.createmod.catnip.outliner.Outliner;
 import net.createmod.catnip.outliner.Outliner.OutlineEntry;
 import net.minecraft.client.DeltaTracker;
@@ -54,7 +55,8 @@ public class GoggleOverlayRenderer implements LayeredDraw.Layer
 
 		var pos = result.getBlockPos();
 
-		var tooltip = GoggleTooltipCollector.collect(world, player, pos);
+		var context = new TooltipContext(world, player, pos);
+		var tooltip = GoggleTooltipCollector.collect(context);
 
 		if (tooltip.isEmpty())
 		{

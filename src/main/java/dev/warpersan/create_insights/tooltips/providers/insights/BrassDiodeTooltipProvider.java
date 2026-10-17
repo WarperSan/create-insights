@@ -1,7 +1,7 @@
 package dev.warpersan.create_insights.tooltips.providers.insights;
 
 import com.simibubi.create.content.redstone.diodes.BrassDiodeBlockEntity;
-import dev.warpersan.create_insights.api.GoggleTooltipCollector;
+import dev.warpersan.create_insights.api.TooltipContext;
 import dev.warpersan.create_insights.network.ClientDataCache;
 import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
 import net.minecraft.network.chat.Component;
@@ -15,7 +15,7 @@ import java.util.List;
 public abstract class BrassDiodeTooltipProvider extends InsightsTooltipProvider
 {
 	@Override
-	protected void onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected void onProvide(TooltipContext context, List<Component> tooltip)
 	{
 		var brassDiode = context.getBlockEntity(BrassDiodeBlockEntity.class);
 
@@ -30,7 +30,7 @@ public abstract class BrassDiodeTooltipProvider extends InsightsTooltipProvider
 	 */
 	protected abstract void onProvide(
 			BrassDiodeBlockEntity blockEntity,
-			GoggleTooltipCollector.TooltipContext context,
+			TooltipContext context,
 			List<Component> tooltip
 	);
 

@@ -1,11 +1,12 @@
 package dev.warpersan.create_insights.tooltips.providers.create;
 
 import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
-import dev.warpersan.create_insights.api.GoggleTooltipCollector;
+import dev.warpersan.create_insights.api.TooltipContext;
 import dev.warpersan.create_insights.api.ITooltipProvider;
 import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Provider responsible to handle {@link IHaveGoggleInformation}
@@ -13,20 +14,20 @@ import java.util.ArrayList;
 public class HaveGoggleInformationTooltipProvider implements ITooltipProvider
 {
 	@Override
-	public void provide(GoggleTooltipCollector.TooltipContext context)
+	public List<Component> provide(TooltipContext context)
 	{
 		if (!context.isWearingGoggles())
-			return;
+			return List.of();
 
 		var blockEntity = context.getBlockEntity(IHaveGoggleInformation.class);
 
 		if (blockEntity == null)
-			return;
+			return List.of();
 
 		var tooltip = new ArrayList<Component>();
 
 		blockEntity.addToGoggleTooltip(tooltip, context.player().isCrouching());
 
-		context.addAll(tooltip);
+		return tooltip;
 	}
 }

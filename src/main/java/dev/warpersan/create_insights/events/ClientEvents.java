@@ -2,7 +2,6 @@ package dev.warpersan.create_insights.events;
 
 import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.api.registries.TooltipCategoryRegistry;
-import dev.warpersan.create_insights.api.registries.TooltipProviderRegistry;
 import dev.warpersan.create_insights.network.ClientDataCache;
 import dev.warpersan.create_insights.network.ResponseDataPayload;
 import dev.warpersan.create_insights.overlays.goggles.GoggleOverlayRenderer;
@@ -46,7 +45,6 @@ public class ClientEvents
 	@SubscribeEvent
 	private static void registerRegistries(NewRegistryEvent event)
 	{
-		event.register(TooltipProviderRegistry.TOOLTIP_PROVIDER_REGISTRY);
 		event.register(TooltipCategoryRegistry.REGISTRY);
 	}
 }

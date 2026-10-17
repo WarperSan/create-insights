@@ -2,7 +2,7 @@ package dev.warpersan.create_insights.tooltips.providers.insights;
 
 import com.simibubi.create.content.logistics.depot.DepotBehaviour;
 import com.simibubi.create.content.logistics.depot.DepotBlockEntity;
-import dev.warpersan.create_insights.api.GoggleTooltipCollector;
+import dev.warpersan.create_insights.api.TooltipContext;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.builders.ItemListBuilder;
 import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
@@ -16,7 +16,7 @@ import java.util.List;
 public class DepotTooltipProvider extends InsightsTooltipProvider
 {
 	@Override
-	protected void onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected void onProvide(TooltipContext context, List<Component> tooltip)
 	{
 		var depot = context.getBlockEntity(DepotBlockEntity.class);
 

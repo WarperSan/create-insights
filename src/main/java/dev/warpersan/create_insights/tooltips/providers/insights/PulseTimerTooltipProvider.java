@@ -2,7 +2,7 @@ package dev.warpersan.create_insights.tooltips.providers.insights;
 
 import com.simibubi.create.content.redstone.diodes.BrassDiodeBlockEntity;
 import com.simibubi.create.content.redstone.diodes.PulseTimerBlockEntity;
-import dev.warpersan.create_insights.api.GoggleTooltipCollector;
+import dev.warpersan.create_insights.api.TooltipContext;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.builders.TimeBuilder;
 import net.minecraft.ChatFormatting;
@@ -17,7 +17,7 @@ import java.util.List;
 public class PulseTimerTooltipProvider extends BrassDiodeTooltipProvider
 {
 	@Override
-	protected void onProvide(BrassDiodeBlockEntity blockEntity, GoggleTooltipCollector.TooltipContext context, List<Component> tooltip)
+	protected void onProvide(BrassDiodeBlockEntity blockEntity, TooltipContext context, List<Component> tooltip)
 	{
 		if (!(blockEntity instanceof PulseTimerBlockEntity pulseTimer))
 			return;

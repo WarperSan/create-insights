@@ -1,7 +1,7 @@
 package dev.warpersan.create_insights.tooltips.providers;
 
-import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.api.ITooltipProvider;
+import dev.warpersan.create_insights.api.TooltipContext;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
@@ -15,17 +15,15 @@ import java.util.List;
 public abstract class InsightsTooltipProvider implements ITooltipProvider
 {
 	@Override
-	public void provide(GoggleTooltipCollector.TooltipContext context)
+	public List<Component> provide(TooltipContext context)
 	{
 		// Skip if not wearing goggles
-		if (!context.isWearingGoggles()) return;
+		if (!context.isWearingGoggles())
+			return List.of();
 
 		var childTooltip = new ArrayList<Component>();
 
 		onProvide(context, childTooltip);
-
-		if (childTooltip.isEmpty())
-			return;
 
 		var tooltip = new ArrayList<Component>();
 
@@ -42,8 +40,8 @@ public abstract class InsightsTooltipProvider implements ITooltipProvider
 			subBuilder.forGoggles(tooltip);
 		}
 
-		context.addAll(tooltip);
+		return tooltip;
 	}
 
-	protected abstract void onProvide(GoggleTooltipCollector.TooltipContext context, List<Component> tooltip);
+	protected abstract void onProvide(TooltipContext context, List<Component> tooltip);
 }

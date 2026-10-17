@@ -1,11 +1,12 @@
 package dev.warpersan.create_insights.tooltips.providers.create;
 
 import com.simibubi.create.content.contraptions.IDisplayAssemblyExceptions;
-import dev.warpersan.create_insights.api.GoggleTooltipCollector;
 import dev.warpersan.create_insights.api.ITooltipProvider;
+import dev.warpersan.create_insights.api.TooltipContext;
 import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Provider responsible to handle {@link IDisplayAssemblyExceptions}
@@ -13,20 +14,20 @@ import java.util.ArrayList;
 public class DisplayAssemblyExceptionsTooltipProvider implements ITooltipProvider
 {
 	@Override
-	public void provide(GoggleTooltipCollector.TooltipContext context)
+	public List<Component> provide(TooltipContext context)
 	{
 		if (!context.isWearingGoggles())
-			return;
+			return List.of();
 
 		var displayAssembly = context.getBlockEntity(IDisplayAssemblyExceptions.class);
 
 		if (displayAssembly == null)
-			return;
+			return List.of();
 
 		var tooltip = new ArrayList<Component>();
 
 		displayAssembly.addExceptionToTooltip(tooltip);
 
-		context.addAll(tooltip);
+		return tooltip;
 	}
 }
