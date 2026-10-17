@@ -51,8 +51,9 @@ jobs:
 
       - uses: Kira-NT/mc-publish@v3
         with:
-          modrinth-id: ${{ steps.modrinth.outputs.id }}
-          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          # Disabled while Modrinth reviews the mod
+          #modrinth-id: ${{ steps.modrinth.outputs.id }}
+          #modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
           curseforge-id: ${{ steps.curseforge.outputs.id }}
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
