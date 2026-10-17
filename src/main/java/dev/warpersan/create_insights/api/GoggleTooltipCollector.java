@@ -3,7 +3,6 @@ package dev.warpersan.create_insights.api;
 import com.simibubi.create.content.equipment.goggles.GogglesItem;
 import dev.warpersan.create_insights.api.interfaces.ITooltipCategory;
 import dev.warpersan.create_insights.api.registries.TooltipCategoryRegistry;
-import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
@@ -12,6 +11,7 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.*;
+import java.util.function.Supplier;
 
 public final class GoggleTooltipCollector
 {
@@ -123,14 +123,16 @@ public final class GoggleTooltipCollector
 	}
 
 	/**
-	 * Adds the given provider
+	 * Adds the given provider into the given category
 	 */
-	public static void addProvider(ITooltipProvider provider)
+	public static void addProvider(
+			Supplier<ITooltipCategory> category,
+			Supplier<ITooltipProvider> provider
+	)
 	{
-		if (provider instanceof InsightsTooltipProvider)
-			Categories.computeIfAbsent(TooltipCategoryRegistry.INSIGHTS.get(), c -> new ArrayList<>()).add(provider);
-		else
-			Categories.computeIfAbsent(TooltipCategoryRegistry.CREATE.get(), c -> new ArrayList<>()).add(provider);
+		var providers = Categories.computeIfAbsent(category.get(), c -> List.of());
+
+		providers.add(provider.get());
 	}
 
 	/**
@@ -150,9 +152,9 @@ public final class GoggleTooltipCollector
 			{
 				var context = new TooltipContext(level, player, pos);
 				provider.provide(context);
-				
+
 				var providerComponents = context.compile();
-				
+
 				if (providerComponents.isEmpty())
 					continue;
 
