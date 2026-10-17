@@ -19,7 +19,7 @@ public class TooltipCategoryRegistry
 	private static final ResourceKey<Registry<ITooltipCategory>> REGISTRY_KEY = ResourceKey.createRegistryKey(
 			ResourceLocation.fromNamespaceAndPath(
 					CreateInsights.MOD_ID,
-					"tooltip_category"
+					"tooltip/category"
 			)
 	);
 
