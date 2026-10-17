@@ -2,7 +2,7 @@ package dev.warpersan.create_insights.tooltips.providers.create;
 
 import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
 import dev.warpersan.create_insights.api.TooltipContext;
-import dev.warpersan.create_insights.api.ITooltipProvider;
+import dev.warpersan.create_insights.api.interfaces.ITooltipProvider;
 import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;

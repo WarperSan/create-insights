@@ -5,7 +5,7 @@ import com.simibubi.create.content.contraptions.piston.MechanicalPistonBlock;
 import com.simibubi.create.content.contraptions.piston.PistonExtensionPoleBlock;
 import com.simibubi.create.foundation.utility.CreateLang;
 import dev.warpersan.create_insights.api.TooltipContext;
-import dev.warpersan.create_insights.api.ITooltipProvider;
+import dev.warpersan.create_insights.api.interfaces.ITooltipProvider;
 import net.createmod.catnip.data.Iterate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

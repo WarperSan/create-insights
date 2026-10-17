@@ -1,6 +1,7 @@
 package dev.warpersan.create_insights.api;
 
 import dev.warpersan.create_insights.api.interfaces.ITooltipCategory;
+import dev.warpersan.create_insights.api.interfaces.ITooltipProvider;
 import dev.warpersan.create_insights.api.registries.TooltipCategoryRegistry;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;

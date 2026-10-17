@@ -1,5 +1,6 @@
-package dev.warpersan.create_insights.api;
+package dev.warpersan.create_insights.api.interfaces;
 
+import dev.warpersan.create_insights.api.TooltipContext;
 import net.minecraft.network.chat.Component;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package dev.warpersan.create_insights.tooltips.providers.create;
 
 import com.simibubi.create.content.contraptions.IDisplayAssemblyExceptions;
-import dev.warpersan.create_insights.api.ITooltipProvider;
+import dev.warpersan.create_insights.api.interfaces.ITooltipProvider;
 import dev.warpersan.create_insights.api.TooltipContext;
 import net.minecraft.network.chat.Component;
 
