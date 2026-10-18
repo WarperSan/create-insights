@@ -53,6 +53,7 @@ public class CreateInsightsClient
 		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, PulseTimerTooltipProvider::new);
 		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, PulseRepeaterTooltipProvider::new);
 		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, DeployerTooltipProvider::new);
+		GoggleTooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, PumpTooltipProvider::new);
 	}
 
 	@SubscribeEvent

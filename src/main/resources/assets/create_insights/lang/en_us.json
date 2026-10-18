@@ -5,6 +5,11 @@
 
 	"create_insights.gui.goggles.insights_stats": "Insights:",
 	"create_insights.tooltip.progress": "Progress:",
+	
+	"create_insights.tooltip.generic.unit.ticks": "t",
+	"create_insights.tooltip.generic.unit.seconds": "s",
+	"create_insights.tooltip.generic.unit.minutes": "m",
+	"create_insights.tooltip.generic.unit.hour": "h",
 
 	"create_insights.tooltip.pushing": "Push:",
 	"create_insights.tooltip.pushing.distance": "Up to",
@@ -24,5 +29,8 @@
 	"create_insights.tooltip.content": "Content:",
 
 	"create_insights.tooltip.usage": "Usage:",
-	"create_insights.tooltip.usage.durability": "Durability:"
+	"create_insights.tooltip.usage.durability": "Durability:",
+	
+	"create_insights.tooltip.transfer": "Transfer:",
+	"create_insights.tooltip.transfer.pump": "Pumps"
 }

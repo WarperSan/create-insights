@@ -18,8 +18,15 @@ public class UnitBuilder
 	@SuppressWarnings("SpellCheckingInspection")
 	public enum UnitType
 	{
-		STRESS,
 		MILLIBUCKETS,
+		BUCKETS,
+		DEGREES,
+		RPM,
+		STRESS,
+		TICKS,
+		SECONDS,
+		MINUTES,
+		HOURS,
 	}
 
 	private @Nullable UnitType unit;
@@ -50,23 +57,40 @@ public class UnitBuilder
 	}
 
 	/**
+	 * Gets the component related to the given unit
+	 */
+	public static MutableComponent getUnitComponent(UnitType type)
+	{
+		LangBuilder builder;
+
+		switch (type)
+		{
+			case MILLIBUCKETS -> builder = CreateLang.translate("generic.unit.millibuckets");
+			case BUCKETS -> builder = CreateLang.translate("generic.unit.buckets");
+			case DEGREES -> builder = CreateLang.translate("generic.unit.degrees");
+			case RPM -> builder = CreateLang.translate("generic.unit.rpm");
+			case STRESS -> builder = CreateLang.translate("generic.unit.stress");
+			case TICKS -> builder = new InsightsBuilder().translate("tooltip.generic.unit.ticks");
+			case SECONDS -> builder = new InsightsBuilder().translate("tooltip.generic.unit.seconds");
+			case MINUTES -> builder = new InsightsBuilder().translate("tooltip.generic.unit.minutes");
+			case HOURS -> builder = new InsightsBuilder().translate("tooltip.generic.unit.hours");
+			default -> throw new IllegalStateException("Unexpected value: " + type);
+		}
+
+		return builder.component();
+	}
+
+	/**
 	 * Gets the display unit of the given type for the given value 
 	 */
 	private static MutableComponent getUnitComponent(UnitType type, double value)
 	{
-		LangBuilder unitBuilder;
-
-		switch (type)
-		{
-			case STRESS -> unitBuilder = CreateLang.translate("generic.unit.stress");
-			case MILLIBUCKETS -> unitBuilder = CreateLang.translate("generic.unit.millibuckets");
-			default -> throw new IllegalStateException("Unexpected value: " + type);
-		}
+		var unitComponent = getUnitComponent(type);
 
 		var builder = new InsightsBuilder();
 
 		builder.text(LangNumberFormat.format(value));
-		builder.add(unitBuilder);
+		builder.add(unitComponent);
 
 		return builder.component();
 	}
