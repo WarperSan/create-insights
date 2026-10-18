@@ -18,7 +18,7 @@ public class PulseRepeaterTooltipProvider extends BrassDiodeTooltipProvider
 	@Override
 	protected void onProvide(BrassDiodeBlockEntity blockEntity, TooltipContext context, List<Component> tooltip)
 	{
-		if (!(blockEntity instanceof PulseTimerBlockEntity pulseRepeater))
+		if (!(blockEntity instanceof PulseRepeaterBlockEntity pulseRepeater))
 			return;
 
 		var time = getMaxTime(pulseRepeater);
