@@ -44,7 +44,8 @@ public class PistonExtensionPoleTooltipProvider implements ITooltipProvider
 		var tooltip = new ArrayList<Component>();
 
 		CreateLang.translate("gui.goggles.pole_length")
-				.text(" " + poleCount)
+				.space()
+				.text(String.valueOf(poleCount))
 				.forGoggles(tooltip);
 
 		return tooltip;

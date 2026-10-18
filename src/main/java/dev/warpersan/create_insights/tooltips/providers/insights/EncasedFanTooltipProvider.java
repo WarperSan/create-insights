@@ -37,9 +37,9 @@ public class EncasedFanTooltipProvider extends InsightsTooltipProvider
 				.style(ChatFormatting.DARK_GRAY);
 		
 		builder.space();
-		
 		builder.text(ChatFormatting.DARK_AQUA, String.format("%.2f", maxDistance));
-		builder.text(" blocks");
+		builder.space();
+		builder.translate("tooltip.pushing.distance.unit");
 
 		builder.indentInto(tooltip);
 	}

@@ -60,10 +60,12 @@ public class DeployerTooltipProvider extends InsightsTooltipProvider
 		var builder = new InsightsBuilder();
 
 		builder.translate("tooltip.usage.durability");
-		builder.add(Component.literal(" "));
-		builder.add(Component.literal(String.valueOf(remainingDurability)).withStyle(ChatFormatting.DARK_AQUA));
-		builder.add(Component.literal(" / "));
-		builder.add(Component.literal(maxDamage.toString()));
+		builder.space();
+		builder.text(ChatFormatting.DARK_AQUA, String.valueOf(remainingDurability));
+		builder.space();
+		builder.divider();
+		builder.space();
+		builder.text(maxDamage.toString());
 		builder.style(ChatFormatting.DARK_GRAY);
 		builder.indentInto(tooltip);
 	}

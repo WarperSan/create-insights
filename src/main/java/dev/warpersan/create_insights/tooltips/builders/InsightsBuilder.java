@@ -38,6 +38,15 @@ public class InsightsBuilder extends LangBuilder
 	}
 
 	/**
+	 * Adds a divider for fraction-based numbering
+	 */
+	public InsightsBuilder divider()
+	{
+		text("/");
+		return this;
+	}
+
+	/**
 	 * Adds an indent to the builder
 	 */
 	public void indentInto(List<? super MutableComponent> tooltip)
