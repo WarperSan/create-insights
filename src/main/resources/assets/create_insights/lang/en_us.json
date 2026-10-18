@@ -32,6 +32,5 @@
 	"create_insights.tooltip.usage.durability": "Durability:",
 	
 	"create_insights.tooltip.transfer": "Transfer:",
-	"create_insights.tooltip.transfer.pump": "Pumps",
-	"create_insights.tooltip.transfer.pump.unit": "s"
+	"create_insights.tooltip.transfer.pump": "Pumps"
 }

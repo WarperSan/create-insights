@@ -41,7 +41,10 @@ public class PumpTooltipProvider extends InsightsTooltipProvider
 		builder.translate("tooltip.transfer.pump");
 		builder.space();
 		builder.add(maximumRate);
-		builder.text(" / s");
+		builder.space();
+		builder.divider();
+		builder.space();
+		builder.add(UnitBuilder.getUnitComponent(UnitBuilder.UnitType.SECONDS));
 		builder.style(ChatFormatting.DARK_GRAY);
 		builder.indentInto(tooltip);
 	}
