@@ -69,7 +69,7 @@ public class ProgressBarBuilder
 		var format = "%3." + precision + "f%%";
 
 		builder.add(CreateLang.text(bar));
-		builder.text(" ");
+		builder.space();
 		builder.text(String.format(format, percentage * 100));
 
 		if (percentage <= 0.25)

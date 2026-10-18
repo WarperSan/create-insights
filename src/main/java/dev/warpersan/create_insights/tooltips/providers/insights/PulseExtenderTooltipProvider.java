@@ -72,7 +72,7 @@ public class PulseExtenderTooltipProvider extends BrassDiodeTooltipProvider
 		builder.translate("tooltip.timing.stop")
 				.style(ChatFormatting.DARK_GRAY);
 
-		builder.text(" ");
+		builder.space();
 
 		builder.add(time);
 

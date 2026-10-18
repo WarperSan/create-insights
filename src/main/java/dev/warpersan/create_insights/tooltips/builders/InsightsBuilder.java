@@ -44,7 +44,7 @@ public class InsightsBuilder extends LangBuilder
 	{
 		var builder = new InsightsBuilder();
 		
-		builder.text(" ").add(this);
+		builder.space().add(this);
 		
 		tooltip.add(builder.component());
 	}

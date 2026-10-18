@@ -54,7 +54,7 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 
 		var builder = new InsightsBuilder();
 		builder.add(fuelTypeDisplay);
-		builder.text(" ");
+		builder.space();
 		builder.add(timeDisplay);
 		builder.indentInto(tooltip);
 	}
