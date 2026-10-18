@@ -18,8 +18,15 @@ public class UnitBuilder
 	@SuppressWarnings("SpellCheckingInspection")
 	public enum UnitType
 	{
-		STRESS,
 		MILLIBUCKETS,
+		BUCKETS,
+		DEGREES,
+		RPM,
+		STRESS,
+		TICKS,
+		SECONDS,
+		MINUTES,
+		HOURS,
 	}
 
 	private @Nullable UnitType unit;
@@ -58,8 +65,15 @@ public class UnitBuilder
 
 		switch (type)
 		{
-			case STRESS -> unitBuilder = CreateLang.translate("generic.unit.stress");
 			case MILLIBUCKETS -> unitBuilder = CreateLang.translate("generic.unit.millibuckets");
+			case BUCKETS -> unitBuilder = CreateLang.translate("generic.unit.buckets");
+			case DEGREES -> unitBuilder = CreateLang.translate("generic.unit.degrees");
+			case RPM -> unitBuilder = CreateLang.translate("generic.unit.rpm");
+			case STRESS -> unitBuilder = CreateLang.translate("generic.unit.stress");
+			case TICKS -> unitBuilder = new InsightsBuilder().translate("tooltip.generic.unit.ticks");
+			case SECONDS -> unitBuilder = new InsightsBuilder().translate("tooltip.generic.unit.seconds");
+			case MINUTES -> unitBuilder = new InsightsBuilder().translate("tooltip.generic.unit.minutes");
+			case HOURS -> unitBuilder = new InsightsBuilder().translate("tooltip.generic.unit.hours");
 			default -> throw new IllegalStateException("Unexpected value: " + type);
 		}
 
