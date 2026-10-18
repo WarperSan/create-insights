@@ -52,9 +52,9 @@ public class TimeBuilder
 	/**
 	 * Gets the display time of the given amount using the given scale
 	 */
-	private static String display(int totalTicks, EnumSet<TimeScale> scale)
+	private static MutableComponent getTime(int totalTicks, EnumSet<TimeScale> scale)
 	{
-		var parts = new ArrayList<String>();
+		var components = new ArrayList<Component>();
 
 		var millisecondsPerTick = 1.0 / SharedConstants.TICKS_PER_SECOND * 1000;
 		var totalMilliseconds = (int) Math.floor(totalTicks * millisecondsPerTick);
@@ -66,7 +66,13 @@ public class TimeBuilder
 			var hours = totalSeconds / 3600;
 
 			if (hours > 0)
-				parts.add(hours + "h");
+			{
+				var builder = new UnitBuilder()
+						.ofUnit(UnitBuilder.UnitType.HOURS)
+						.forValue(hours);
+
+				components.add(builder.component());
+			}
 		}
 
 		// Display minutes
@@ -75,7 +81,13 @@ public class TimeBuilder
 			var minutes = (totalSeconds % 3600) / 60;
 
 			if (minutes > 0)
-				parts.add(minutes + "m");
+			{
+				var builder = new UnitBuilder()
+						.ofUnit(UnitBuilder.UnitType.MINUTES)
+						.forValue(minutes);
+
+				components.add(builder.component());
+			}
 		}
 
 		// Display seconds
@@ -84,28 +96,41 @@ public class TimeBuilder
 			var seconds = totalSeconds % 60;
 
 			if (seconds > 0)
-				parts.add(seconds + "s");
-		}
+			{
+				var builder = new UnitBuilder()
+						.ofUnit(UnitBuilder.UnitType.SECONDS)
+						.forValue(seconds);
 
-		// Display milliseconds
-		if (scale.contains(TimeScale.MILLISECONDS))
-		{
-			var milliseconds = totalMilliseconds % 1000;
-
-			if (milliseconds > 0)
-				parts.add(milliseconds + "ms");
+				components.add(builder.component());
+			}
 		}
 
 		// Fallback if too small
 		if (totalTicks < SharedConstants.TICKS_PER_SECOND)
 		{
+			UnitBuilder builder = new UnitBuilder();
+
 			if (scale.contains(TimeScale.TICKS))
-				parts.add(totalTicks + "t");
+				builder.ofUnit(UnitBuilder.UnitType.TICKS).forValue(totalTicks);
 			else
-				parts.add("0s");
+				builder.ofUnit(UnitBuilder.UnitType.SECONDS).forValue(0);
+
+			components.add(builder.component());
 		}
 
-		return String.join(" ", parts);
+		var builder = new InsightsBuilder();
+
+		for (int i = 0; i < components.size(); i++)
+		{
+			var component = components.get(i);
+
+			if (i != components.size() - 1)
+				builder.space();
+
+			builder.add(component);
+		}
+
+		return builder.component();
 	}
 
 	/**
@@ -113,8 +138,6 @@ public class TimeBuilder
 	 */
 	public MutableComponent component()
 	{
-		var text = display(this.tickAmount, this.scale);
-
-		return Component.literal(text);
+		return getTime(this.tickAmount, this.scale);
 	}
 }
