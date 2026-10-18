@@ -18,7 +18,6 @@ public class TimeBuilder
 	public enum TimeScale
 	{
 		TICKS,
-		MILLISECONDS,
 		SECONDS,
 		MINUTES,
 		HOURS
@@ -98,7 +97,7 @@ public class TimeBuilder
 		}
 
 		// Fallback if too small
-		if (!scale.contains(TimeScale.MILLISECONDS) && totalTicks < SharedConstants.TICKS_PER_SECOND)
+		if (totalTicks < SharedConstants.TICKS_PER_SECOND)
 		{
 			if (scale.contains(TimeScale.TICKS))
 				parts.add(totalTicks + "t");
