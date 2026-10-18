@@ -8,6 +8,7 @@
 
 	"create_insights.tooltip.pushing": "Push:",
 	"create_insights.tooltip.pushing.distance": "Up to",
+	"create_insights.tooltip.pushing.distance.unit": "blocks",
 
 	"create_insights.tooltip.heating": "Heating:",
 	"create_insights.tooltip.heating.low": "🔥",
