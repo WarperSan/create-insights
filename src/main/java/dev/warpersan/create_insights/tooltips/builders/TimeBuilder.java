@@ -124,10 +124,10 @@ public class TimeBuilder
 		{
 			var component = components.get(i);
 
+			builder.add(component);
+
 			if (i != components.size() - 1)
 				builder.space();
-
-			builder.add(component);
 		}
 
 		return builder.component();
