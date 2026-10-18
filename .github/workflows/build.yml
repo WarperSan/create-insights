@@ -8,6 +8,8 @@ on:
       - .gitignore
       - CHANGELOG.md
       - README.md
+    branches:
+      - main
   pull_request:
     paths-ignore:
       - .github/**
