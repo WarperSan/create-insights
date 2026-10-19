@@ -51,6 +51,7 @@ public class ItemListBuilder
 	/**
 	 * Adds the given stack to the items to display
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	public ItemListBuilder addStack(@NotNull ItemStack stack)
 	{
 		this.stacks.add(stack);

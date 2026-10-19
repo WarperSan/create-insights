@@ -61,7 +61,7 @@ public class DeployerTooltipProvider extends InsightsTooltipProvider
 
 		builder.translate("tooltip.usage.durability");
 		builder.space();
-		builder.text(ChatFormatting.DARK_AQUA, String.valueOf(remainingDurability));
+		builder.number(ChatFormatting.DARK_AQUA, remainingDurability);
 		builder.space();
 		builder.divider();
 		builder.space();

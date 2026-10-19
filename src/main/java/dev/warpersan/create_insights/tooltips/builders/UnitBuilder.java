@@ -2,7 +2,6 @@ package dev.warpersan.create_insights.tooltips.builders;
 
 import com.simibubi.create.foundation.utility.CreateLang;
 import net.createmod.catnip.lang.LangBuilder;
-import net.createmod.catnip.lang.LangNumberFormat;
 import net.minecraft.network.chat.MutableComponent;
 
 import javax.annotation.Nullable;
@@ -89,7 +88,7 @@ public class UnitBuilder
 
 		var builder = new InsightsBuilder();
 
-		builder.text(LangNumberFormat.format(value));
+		builder.number(value);
 		builder.add(unitComponent);
 
 		return builder.component();

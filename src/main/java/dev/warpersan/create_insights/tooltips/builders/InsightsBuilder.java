@@ -2,6 +2,7 @@ package dev.warpersan.create_insights.tooltips.builders;
 
 import dev.warpersan.create_insights.CreateInsights;
 import net.createmod.catnip.lang.LangBuilder;
+import net.createmod.catnip.lang.LangNumberFormat;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.MutableComponent;
 import org.jetbrains.annotations.NotNull;
@@ -40,9 +41,28 @@ public class InsightsBuilder extends LangBuilder
 	/**
 	 * Adds a divider for fraction-based numbering
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	public InsightsBuilder divider()
 	{
 		text("/");
+		return this;
+	}
+
+	/**
+	 * Appends a number component
+	 */
+	public InsightsBuilder number(double value)
+	{
+		text(LangNumberFormat.format(value));
+		return this;
+	}
+
+	/**
+	 * Appends a colored number component
+	 */
+	public InsightsBuilder number(ChatFormatting format, double value)
+	{
+		text(format, LangNumberFormat.format(value));
 		return this;
 	}
 
@@ -52,9 +72,9 @@ public class InsightsBuilder extends LangBuilder
 	public void indentInto(List<? super MutableComponent> tooltip)
 	{
 		var builder = new InsightsBuilder();
-		
+
 		builder.space().add(this);
-		
+
 		tooltip.add(builder.component());
 	}
 }
