@@ -1,5 +1,8 @@
 # How to add a Tooltip Provider?
 
+> [!WARNING]
+> This document is outdated. Some things have changed.
+
 This mod uses a system of providers to generate the tooltips. This allows to have modular tooltips, as each tooltip is
 independent of the other.
 

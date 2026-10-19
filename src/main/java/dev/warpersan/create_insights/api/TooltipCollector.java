@@ -9,7 +9,10 @@ import net.minecraft.network.chat.Component;
 import java.util.*;
 import java.util.function.Supplier;
 
-public final class GoggleTooltipCollector
+/**
+ * Class responsible to collect tooltips
+ */
+public final class TooltipCollector
 {
 	private static final Comparator<ITooltipCategory> CATEGORY_ORDER = Comparator
 			.comparingInt(ITooltipCategory::priority)
