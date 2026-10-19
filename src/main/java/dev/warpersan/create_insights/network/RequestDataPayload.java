@@ -9,6 +9,9 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Data sent by the client to the server to request a server-side field
+ */
 public record RequestDataPayload(ResourceLocation dimension, BlockPos pos, String className,
                                  String fieldName) implements CustomPacketPayload
 {
