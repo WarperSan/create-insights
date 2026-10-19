@@ -7,6 +7,9 @@ import net.minecraft.network.chat.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Category used to group providers for Create: Insights
+ */
 public class InsightsTooltipCategory implements ITooltipCategory
 {
 	@Override

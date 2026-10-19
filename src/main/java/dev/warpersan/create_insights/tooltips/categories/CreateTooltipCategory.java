@@ -5,6 +5,9 @@ import net.minecraft.network.chat.Component;
 
 import java.util.List;
 
+/**
+ * Category used to group providers for Create
+ */
 public class CreateTooltipCategory implements ITooltipCategory
 {
 	@Override
@@ -16,7 +19,7 @@ public class CreateTooltipCategory implements ITooltipCategory
 	@Override
 	public List<Component> header()
 	{
-		// Create handle its own headers
+		// Create handles its own headers
 		return List.of();
 	}
 }
