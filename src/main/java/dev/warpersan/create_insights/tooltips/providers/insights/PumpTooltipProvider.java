@@ -11,6 +11,9 @@ import net.minecraft.network.chat.Component;
 
 import java.util.List;
 
+/**
+ * Provider responsible to display the maximum transfer rate for pumps
+ */
 public class PumpTooltipProvider extends InsightsTooltipProvider
 {
 	@Override
