@@ -62,9 +62,9 @@ public class ServerDataCache
 
 		if (blockEntity == null)
 			return null;
-		
+
 		var blockEntityLevel = blockEntity.getLevel();
-		
+
 		if (blockEntityLevel == null)
 			return null;
 

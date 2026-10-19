@@ -29,7 +29,7 @@ public class ReflectionHelper
 
 		if (value == null)
 			return null;
-		
+
 		return targetClassValue.cast(value);
 	}
 

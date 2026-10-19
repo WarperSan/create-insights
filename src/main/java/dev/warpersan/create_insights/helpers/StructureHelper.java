@@ -13,37 +13,38 @@ import javax.annotation.Nullable;
  */
 public class StructureHelper
 {
+	/**
+	 * Gets the controller of the given crushing wheel
+	 */
+	@Nullable
+	public static CrushingWheelControllerBlockEntity getCrushingWheelController(CrushingWheelBlockEntity crushingWheel)
+	{
+		var level = crushingWheel.getLevel();
 
-    /**
-     * Gets the controller of the given crushing wheel
-     */
-    @Nullable
-    public static CrushingWheelControllerBlockEntity getCrushingWheelController(CrushingWheelBlockEntity crushingWheel) {
-        var level = crushingWheel.getLevel();
+		if (level == null)
+			return null;
 
-        if (level == null)
-            return null;
+		var state = crushingWheel.getBlockState();
+		var pos = crushingWheel.getBlockPos();
 
-        var state = crushingWheel.getBlockState();
-        var pos = crushingWheel.getBlockPos();
+		for (var d : Iterate.directions)
+		{
+			if (d.getAxis() == state.getValue(RotatedPillarKineticBlock.AXIS))
+				continue;
 
-        for (var d : Iterate.directions) {
-            if (d.getAxis() == state.getValue(RotatedPillarKineticBlock.AXIS))
-                continue;
+			var relativePos = pos.relative(d);
 
-            var relativePos = pos.relative(d);
+			if (!AllBlocks.CRUSHING_WHEEL_CONTROLLER.has(level.getBlockState(relativePos)))
+				continue;
 
-            if (!AllBlocks.CRUSHING_WHEEL_CONTROLLER.has(level.getBlockState(relativePos)))
-                continue;
+			var entity = level.getBlockEntity(relativePos);
 
-            var entity = level.getBlockEntity(relativePos);
+			if (!(entity instanceof CrushingWheelControllerBlockEntity crushingWheelController))
+				continue;
 
-            if (!(entity instanceof CrushingWheelControllerBlockEntity crushingWheelController))
-                continue;
+			return crushingWheelController;
+		}
 
-            return crushingWheelController;
-        }
-
-        return null;
-    }
+		return null;
+	}
 }

@@ -39,7 +39,8 @@ public class CrushingWheelTooltipProvider extends InsightsTooltipProvider
 
 		var recipe = getCrushingRecipe(controller);
 
-		if (recipe == null) {
+		if (recipe == null)
+		{
 			CreateInsights.LOGGER.debug("Failed to get the recipe of the crushing wheel.");
 			return;
 		}
@@ -47,7 +48,8 @@ public class CrushingWheelTooltipProvider extends InsightsTooltipProvider
 		var total = recipe.getProcessingDuration() - 20;
 		var current = Math.max(total - controller.inventory.remainingTime + 20, 0);
 
-		if (total <= 0) {
+		if (total <= 0)
+		{
 			throw new IllegalArgumentException(
 					String.format(
 							"Instance of '%s' has a recipe with a processing duration less than 1.",
@@ -72,7 +74,8 @@ public class CrushingWheelTooltipProvider extends InsightsTooltipProvider
 	}
 
 	@Nullable
-	private static StandardProcessingRecipe<RecipeWrapper> getCrushingRecipe(CrushingWheelControllerBlockEntity crushingWheel) {
+	private static StandardProcessingRecipe<RecipeWrapper> getCrushingRecipe(CrushingWheelControllerBlockEntity crushingWheel)
+	{
 		var recipe = crushingWheel.findRecipe();
 
 		return recipe.map(RecipeHolder::value).orElse(null);

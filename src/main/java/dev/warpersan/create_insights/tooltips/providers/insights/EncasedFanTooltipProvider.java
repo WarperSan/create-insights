@@ -23,19 +23,19 @@ public class EncasedFanTooltipProvider extends InsightsTooltipProvider
 			return;
 
 		var maxDistance = encasedFan.airCurrent.maxDistance;
-		
+
 		var headerBuilder = new InsightsBuilder();
-		
+
 		headerBuilder.translate("tooltip.pushing")
 				.header();
-		
+
 		headerBuilder.addTo(tooltip);
 
 		var builder = new InsightsBuilder();
 
 		builder.translate("tooltip.pushing.distance")
 				.style(ChatFormatting.DARK_GRAY);
-		
+
 		builder.space();
 		builder.text(ChatFormatting.DARK_AQUA, String.format("%.2f", maxDistance));
 		builder.space();

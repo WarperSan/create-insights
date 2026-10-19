@@ -125,7 +125,7 @@ public class ClientDataCache
 			return null;
 
 		var dimension = level.dimension();
-		
+
 		return getOrRequest(
 				dimension.location(),
 				blockEntity.getBlockPos(),

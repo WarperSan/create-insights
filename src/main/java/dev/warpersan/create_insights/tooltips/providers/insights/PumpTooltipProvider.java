@@ -38,9 +38,9 @@ public class PumpTooltipProvider extends InsightsTooltipProvider
 				.header();
 
 		headerBuilder.addTo(tooltip);
-		
+
 		var builder = new InsightsBuilder();
-		
+
 		builder.translate("tooltip.transfer.pump");
 		builder.space();
 		builder.add(maximumRate);

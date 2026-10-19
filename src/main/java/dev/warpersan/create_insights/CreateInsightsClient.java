@@ -25,7 +25,7 @@ public class CreateInsightsClient
 	public CreateInsightsClient(ModContainer container)
 	{
 		var eventBus = container.getEventBus();
-		
+
 		if (eventBus != null)
 		{
 			TooltipCategoryRegistry.CATEGORIES.register(eventBus);

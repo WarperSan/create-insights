@@ -18,28 +18,29 @@ import java.util.Optional;
  */
 public class RecipeHelper
 {
+	/**
+	 * Gets the recipe of the given inventory
+	 */
+	@Nullable
+	private static Recipe<RecipeInput> getRecipe(AllRecipeTypes recipes, IItemHandler inventory, @NotNull Level level)
+	{
+		var wrapper = new RecipeWrapper(inventory);
+		Optional<RecipeHolder<Recipe<RecipeInput>>> recipe = recipes.find(wrapper, level);
 
-    /**
-     * Gets the recipe of the given inventory
-     */
-    @Nullable
-    private static Recipe<RecipeInput> getRecipe(AllRecipeTypes recipes, IItemHandler inventory, @NotNull Level level) {
-        var wrapper = new RecipeWrapper(inventory);
-        Optional<RecipeHolder<Recipe<RecipeInput>>> recipe = recipes.find(wrapper, level);
+		return recipe.map(RecipeHolder::value).orElse(null);
+	}
 
-        return recipe.map(RecipeHolder::value).orElse(null);
-    }
+	/**
+	 * Gets the recipe of the given block entity
+	 */
+	@Nullable
+	public static Recipe<RecipeInput> getRecipe(BlockEntity blockEntity, AllRecipeTypes recipes, IItemHandler inventory)
+	{
+		var level = blockEntity.getLevel();
 
-    /**
-     * Gets the recipe of the given block entity
-     */
-    @Nullable
-	public static Recipe<RecipeInput> getRecipe(BlockEntity blockEntity, AllRecipeTypes recipes, IItemHandler inventory) {
-        var level = blockEntity.getLevel();
+		if (level == null)
+			return null;
 
-        if (level == null)
-            return null;
-
-        return getRecipe(recipes, inventory, level);
-    }
+		return getRecipe(recipes, inventory, level);
+	}
 }
