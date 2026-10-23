@@ -49,7 +49,7 @@ public class BrassTunnelTooltipProvider extends InsightsTooltipProvider
 
 		builder.translate("tooltip.usage.mode");
 		builder.space();
-		builder.translatable(value.getTranslationKey());
+		builder.translatable(ChatFormatting.GOLD, value.getTranslationKey());
 		builder.style(ChatFormatting.DARK_GRAY);
 		builder.indentInto(tooltip);
 	}
