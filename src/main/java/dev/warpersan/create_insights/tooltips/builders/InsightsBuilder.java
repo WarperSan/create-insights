@@ -4,6 +4,7 @@ import dev.warpersan.create_insights.CreateInsights;
 import net.createmod.catnip.lang.LangBuilder;
 import net.createmod.catnip.lang.LangNumberFormat;
 import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import org.jetbrains.annotations.NotNull;
 
@@ -35,6 +36,19 @@ public class InsightsBuilder extends LangBuilder
 	public @NotNull InsightsBuilder translate(@NotNull String langKey, Object @NotNull ... args)
 	{
 		super.translate(langKey, args);
+		return this;
+	}
+
+	/**
+	 * Appends a localized component
+	 * @apiNote Key must be the full translation key
+	 */
+	@SuppressWarnings("UnusedReturnValue")
+	public InsightsBuilder translatable(String translationKey, Object... args)
+	{
+		var component = Component.translatable(translationKey, args);
+
+		this.add(component);
 		return this;
 	}
 
