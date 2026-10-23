@@ -54,6 +54,8 @@ public class CreateInsightsClient
 		TooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, PulseRepeaterTooltipProvider::new);
 		TooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, DeployerTooltipProvider::new);
 		TooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, PumpTooltipProvider::new);
+		TooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, BrassTunnelTooltipProvider::new);
+		TooltipCollector.addProvider(TooltipCategoryRegistry.INSIGHTS, MechanicalArmTooltipProvider::new);
 	}
 
 	@SubscribeEvent

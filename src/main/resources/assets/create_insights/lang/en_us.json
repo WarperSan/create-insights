@@ -23,6 +23,7 @@
 	"create_insights.tooltip.content": "Content:",
 	"create_insights.tooltip.usage": "Usage:",
 	"create_insights.tooltip.usage.durability": "Durability:",
+	"create_insights.tooltip.usage.distribution": "Distribution:",
 	"create_insights.tooltip.transfer": "Transfer:",
 	"create_insights.tooltip.transfer.pump": "Pumps"
 }
