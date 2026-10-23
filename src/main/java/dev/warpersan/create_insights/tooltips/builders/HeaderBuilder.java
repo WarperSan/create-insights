@@ -17,12 +17,10 @@ public class HeaderBuilder
 	public enum HeaderType
 	{
 		PROGRESS,
-		PUSHING,
 		HEATING,
 		TIMING,
 		CONTENT,
 		USAGE,
-		TRANSFER,
 	}
 
 	private @Nullable HeaderType type;
@@ -51,12 +49,10 @@ public class HeaderBuilder
 		switch (type)
 		{
 			case PROGRESS -> builder = new InsightsBuilder().translate("tooltip.progress");
-			case PUSHING -> builder = new InsightsBuilder().translate("tooltip.pushing");
 			case HEATING -> builder = new InsightsBuilder().translate("tooltip.heating");
 			case TIMING -> builder = new InsightsBuilder().translate("tooltip.timing");
 			case CONTENT -> builder = new InsightsBuilder().translate("tooltip.content");
 			case USAGE -> builder = new InsightsBuilder().translate("tooltip.usage");
-			case TRANSFER -> builder = new InsightsBuilder().translate("tooltip.transfer");
 			default -> throw new IllegalStateException("Unexpected value: " + type);
 		}
 

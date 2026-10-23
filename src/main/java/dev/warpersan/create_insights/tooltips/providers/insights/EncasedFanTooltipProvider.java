@@ -26,20 +26,20 @@ public class EncasedFanTooltipProvider extends InsightsTooltipProvider
 		var maxDistance = encasedFan.airCurrent.maxDistance;
 
 		var header = new HeaderBuilder()
-				.ofType(HeaderBuilder.HeaderType.PUSHING)
+				.ofType(HeaderBuilder.HeaderType.USAGE)
 				.component();
 
 		tooltip.add(header);
 
 		var builder = new InsightsBuilder();
 
-		builder.translate("tooltip.pushing.distance")
+		builder.translate("tooltip.usage.push")
 				.style(ChatFormatting.DARK_GRAY);
 
 		builder.space();
 		builder.text(ChatFormatting.DARK_AQUA, String.format("%.2f", maxDistance));
 		builder.space();
-		builder.translate("tooltip.pushing.distance.unit");
+		builder.translate("tooltip.usage.push.unit");
 
 		builder.indentInto(tooltip);
 	}

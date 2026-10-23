@@ -35,14 +35,14 @@ public class PumpTooltipProvider extends InsightsTooltipProvider
 				.withStyle(ChatFormatting.DARK_AQUA);
 
 		var header = new HeaderBuilder()
-				.ofType(HeaderBuilder.HeaderType.TRANSFER)
+				.ofType(HeaderBuilder.HeaderType.USAGE)
 				.component();
 
 		tooltip.add(header);
 
 		var builder = new InsightsBuilder();
 
-		builder.translate("tooltip.transfer.pump");
+		builder.translate("tooltip.usage.pump");
 		builder.space();
 		builder.add(maximumRate);
 		builder.space();
