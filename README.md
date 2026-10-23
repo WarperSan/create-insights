@@ -14,16 +14,15 @@ A [Create](https://github.com/Creators-of-Create/Create) mod add-on adding more 
 ## Features
 
 This mod adds a bunch of tooltips to help players understand their machines better:
-- Progress bar for **Millstone**
-- Progress bar for **Crushing Wheel**
+- Progress bar for **Millstone** and **Crushing Wheel**
 - Remaining Heat Time for **Blaze Burner**
 - Push Distance for **Encased Fan**
-- Time until Next Pulse for **Pulse Repeater**
+- Time until Next Pulse for **Pulse Repeater** and **Pulse Timer**
 - Time until Depleted for **Pulse Extender**
-- Time until Next Pulse for **Pulse Timer**
 - Content of **Depot**
 - Durability of the equipped tool of **Deployer**
 - Fluid Transfer Rate for **Mechanical Pump**
+- Distribution Mode for **Brass Tunnel** and **Mechanical Arm**
 
 ![Demonstration of Millstone Progress](https://raw.githubusercontent.com/WarperSan/create-insights/refs/heads/main/assets/millstone-progress.png)
 

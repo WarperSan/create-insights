@@ -44,7 +44,7 @@ public class MechanicalArmTooltipProvider extends InsightsTooltipProvider
 
 		var builder = new InsightsBuilder();
 
-		builder.translate("tooltip.usage.mode");
+		builder.translate("tooltip.usage.distribution");
 		builder.space();
 		builder.translatable(ChatFormatting.GOLD, value.getTranslationKey());
 		builder.style(ChatFormatting.DARK_GRAY);
