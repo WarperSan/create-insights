@@ -6,7 +6,7 @@ import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import dev.warpersan.create_insights.CreateInsights;
 import dev.warpersan.create_insights.api.TooltipContext;
 import dev.warpersan.create_insights.helpers.StructureHelper;
-import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
+import dev.warpersan.create_insights.tooltips.builders.HeaderBuilder;
 import dev.warpersan.create_insights.tooltips.builders.ProgressBarBuilder;
 import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
 import net.minecraft.network.chat.Component;
@@ -65,11 +65,11 @@ public class CrushingWheelTooltipProvider extends InsightsTooltipProvider
 				.withPrecision(0)
 				.forPercentage(percent);
 
-		var builder = new InsightsBuilder()
-				.translate("tooltip.progress")
-				.header();
+		var header = new HeaderBuilder()
+				.ofType(HeaderBuilder.HeaderType.PROGRESS)
+				.component();
 
-		builder.addTo(tooltip);
+		tooltip.add(header);
 		tooltip.add(barBuilder.component());
 	}
 

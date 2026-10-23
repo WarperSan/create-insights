@@ -3,6 +3,7 @@ package dev.warpersan.create_insights.tooltips.providers.insights;
 import com.simibubi.create.content.kinetics.deployer.DeployerBlockEntity;
 import dev.warpersan.create_insights.api.TooltipContext;
 import dev.warpersan.create_insights.helpers.ReflectionHelper;
+import dev.warpersan.create_insights.tooltips.builders.HeaderBuilder;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
 import net.minecraft.ChatFormatting;
@@ -51,11 +52,11 @@ public class DeployerTooltipProvider extends InsightsTooltipProvider
 
 		var remainingDurability = maxDamage - currentDamageValue;
 
-		var headerBuilder = new InsightsBuilder()
-				.translate("tooltip.usage")
-				.header();
+		var header = new HeaderBuilder()
+				.ofType(HeaderBuilder.HeaderType.USAGE)
+				.component();
 
-		headerBuilder.addTo(tooltip);
+		tooltip.add(header);
 
 		var builder = new InsightsBuilder();
 

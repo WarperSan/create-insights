@@ -4,6 +4,7 @@ import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlockEntity;
 import dev.warpersan.create_insights.api.TooltipContext;
 import dev.warpersan.create_insights.network.ClientDataCache;
+import dev.warpersan.create_insights.tooltips.builders.HeaderBuilder;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.builders.TimeBuilder;
 import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
@@ -39,11 +40,11 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 		var isCreative = blazeBurner.isCreative();
 		var heatLevel = blazeBurner.getHeatLevelFromBlock();
 
-		var headerBuilder = new InsightsBuilder()
-				.translate("tooltip.heating")
-				.header();
+		var header = new HeaderBuilder()
+				.ofType(HeaderBuilder.HeaderType.HEATING)
+				.component();
 
-		headerBuilder.addTo(tooltip);
+		tooltip.add(header);
 
 		var fuelTypeDisplay = getFuelTypeDisplay(
 				fuelType,

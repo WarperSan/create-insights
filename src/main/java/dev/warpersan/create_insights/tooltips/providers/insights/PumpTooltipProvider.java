@@ -2,6 +2,7 @@ package dev.warpersan.create_insights.tooltips.providers.insights;
 
 import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import dev.warpersan.create_insights.api.TooltipContext;
+import dev.warpersan.create_insights.tooltips.builders.HeaderBuilder;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.builders.UnitBuilder;
 import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
@@ -33,11 +34,11 @@ public class PumpTooltipProvider extends InsightsTooltipProvider
 				.component()
 				.withStyle(ChatFormatting.DARK_AQUA);
 
-		var headerBuilder = new InsightsBuilder()
-				.translate("tooltip.transfer")
-				.header();
+		var header = new HeaderBuilder()
+				.ofType(HeaderBuilder.HeaderType.TRANSFER)
+				.component();
 
-		headerBuilder.addTo(tooltip);
+		tooltip.add(header);
 
 		var builder = new InsightsBuilder();
 

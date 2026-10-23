@@ -3,6 +3,7 @@ package dev.warpersan.create_insights.tooltips.providers.insights;
 import com.simibubi.create.content.redstone.diodes.BrassDiodeBlockEntity;
 import com.simibubi.create.content.redstone.diodes.PulseExtenderBlockEntity;
 import dev.warpersan.create_insights.api.TooltipContext;
+import dev.warpersan.create_insights.tooltips.builders.HeaderBuilder;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.builders.TimeBuilder;
 import net.minecraft.ChatFormatting;
@@ -28,11 +29,11 @@ public class PulseExtenderTooltipProvider extends BrassDiodeTooltipProvider
 
 		var percent = pulseExtender.getProgress();
 
-		var headerBuilder = new InsightsBuilder()
-				.translate("tooltip.timing")
-				.header();
+		var header = new HeaderBuilder()
+				.ofType(HeaderBuilder.HeaderType.TIMING)
+				.component();
 
-		headerBuilder.addTo(tooltip);
+		tooltip.add(header);
 
 		var timeDisplay = getTimeDisplay(time, percent);
 

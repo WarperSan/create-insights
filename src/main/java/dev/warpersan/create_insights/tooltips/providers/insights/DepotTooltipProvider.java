@@ -3,6 +3,7 @@ package dev.warpersan.create_insights.tooltips.providers.insights;
 import com.simibubi.create.content.logistics.depot.DepotBehaviour;
 import com.simibubi.create.content.logistics.depot.DepotBlockEntity;
 import dev.warpersan.create_insights.api.TooltipContext;
+import dev.warpersan.create_insights.tooltips.builders.HeaderBuilder;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.builders.ItemListBuilder;
 import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
@@ -34,11 +35,11 @@ public class DepotTooltipProvider extends InsightsTooltipProvider
 		if (!itemListBuilder.hasStack())
 			return;
 
-		var headerBuilder = new InsightsBuilder()
-				.translate("tooltip.content")
-				.header();
+		var header = new HeaderBuilder()
+				.ofType(HeaderBuilder.HeaderType.CONTENT)
+				.component();
 
-		headerBuilder.addTo(tooltip);
+		tooltip.add(header);
 
 		for (var component : itemListBuilder.components())
 		{

@@ -21,15 +21,6 @@ public class InsightsBuilder extends LangBuilder
 	}
 
 	/**
-	 * Styles the builder as a header
-	 */
-	public InsightsBuilder header()
-	{
-		this.style(ChatFormatting.GRAY);
-		return this;
-	}
-
-	/**
 	 * Appends a localized component
 	 */
 	@Override

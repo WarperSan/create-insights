@@ -3,6 +3,7 @@ package dev.warpersan.create_insights.tooltips.providers.insights;
 import com.simibubi.create.content.kinetics.mechanicalArm.ArmBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollOptionBehaviour;
 import dev.warpersan.create_insights.api.TooltipContext;
+import dev.warpersan.create_insights.tooltips.builders.HeaderBuilder;
 import dev.warpersan.create_insights.tooltips.builders.InsightsBuilder;
 import dev.warpersan.create_insights.tooltips.providers.InsightsTooltipProvider;
 import net.minecraft.ChatFormatting;
@@ -36,11 +37,11 @@ public class MechanicalArmTooltipProvider extends InsightsTooltipProvider
 		if (!(rawValue instanceof ArmBlockEntity.SelectionMode value))
 			return;
 
-		var headerBuilder = new InsightsBuilder()
-				.translate("tooltip.usage")
-				.header();
+		var header = new HeaderBuilder()
+				.ofType(HeaderBuilder.HeaderType.USAGE)
+				.component();
 
-		headerBuilder.addTo(tooltip);
+		tooltip.add(header);
 
 		var builder = new InsightsBuilder();
 
