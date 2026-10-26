@@ -25,6 +25,9 @@ public class BlazeBurnerTooltipProvider extends InsightsTooltipProvider
 		if (blazeBurner == null)
 			return;
 
+		if (blazeBurner.stockKeeper)
+			return;
+
 		var remainingBurnTime = ClientDataCache.getOrRequest(
 				blazeBurner,
 				BlazeBurnerBlockEntity.class,
